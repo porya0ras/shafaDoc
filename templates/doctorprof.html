@@ -1,0 +1,77 @@
+<ion-view view-title="پروفایل پزشک">
+        <ion-content class="padding" ng-controller="Docs" ng-init="getDocProFile(stateParams.docid);getAddress(stateParams.docid);">
+<div class="list card"  >
+
+  <div class="item item-avatar">
+    <img ng-src="{{httpsite + docprofile.e.pic.replace('~','')}}">
+    <h2>{{docprofile.e.fl}}</h2>
+    <p>{{docprofile.e.specialty}}</p>
+  </div>
+
+  <div class="item item-body">
+
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+   <ion-slide>
+      <img ng-src="{{httpsite +'/'+ docprofile.e.pic1}}" class="slideimg">
+   </ion-slide>
+   <ion-slide>
+      <img ng-src="{{httpsite +'/'+ docprofile.e.pic2}}" class="slideimg">
+   </ion-slide>
+   <ion-slide>
+     <img ng-src="{{httpsite +'/'+ docprofile.e.pic3}}" class="slideimg">
+   </ion-slide>
+ </ion-slide-box>
+    <p>
+      میزان تجربه : {{docprofile.e.experience}}
+        <br />
+        فارغ التحصیل از : {{docprofile.e.Education}}
+        <br />
+        مسلط به زبان های : {{docprofile.e.Languages_Spoken}}
+        <br />
+        برد تخصصی : {{docprofile.e.Board_Certifications}}
+        <br />
+        بیمه های تحت پوشش : {{docprofile.e.Insurances}}
+        <br />
+        خدمات : {{docprofile.e.Services}}
+    </p>
+    <p>
+      <div class="list">
+          <div class="item item-divider">
+    ساعات ملاقات
+  </div>
+
+  <a class="item" href="#">
+<p>  {{docprofile.e.worktime}}</p>
+  </a>
+  <div class="item item-divider">
+    تلفن
+  </div>
+
+  <a class="item" href="#">
+  {{docprofile.e.tell}}
+  </a>
+  <div class="item item-divider" >
+    آدرس
+  </div>
+  <a class="item" href="#" ng-repeat="row0 in address">
+  <p>{{row0.address}}</p>
+  </a>
+</div>
+    </p>
+      <a href="#/app/map/{{docprofile.map.latitude0}}/{{docprofile.map.latitude1}}">
+      <map data-tap-disabled="true" on-create="mapCreated(map,docprofile.map.latitude0,docprofile.map.latitude1)"></map>
+          </a>
+  </div>
+  <div class="positive item tabs tabs-secondary tabs-icon-left" >
+    <a class="tab-item " href="#/app/docreserv/{{docprofile.e.docid}}">
+      <i class="icon ion-share"></i>
+      رزرو زمان ملاقات
+    </a>
+  </div>
+    <br />
+    <br />
+    <br />
+    
+</div>     
+  </ion-content>
+</ion-view>

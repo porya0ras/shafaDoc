@@ -1,0 +1,27 @@
+<ion-view view-title="شفاداک ">
+  <ion-content>
+    <div class="list list-inset scroll-content" >
+      <div ng-controller="Search" ng-init="init()">
+      <label class="item item-input" id="searchin">
+        <i class="icon ion-search placeholder-icon" ></i>
+        <input class="searchbar" type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" >
+      </label>
+
+<button class="button button-energized" id="searchbtn" ng-click="getResult(selected)">
+  جستجو کن
+</button>
+</div>
+<hr id="browsehr"></hr>
+
+<div class="list list-inset" ng-controller="Ostans" ng-hide="hide" >
+
+    <a class="item" ng-repeat="row in ostans"  href="#/app/cities/{{row.code}}">
+      {{row.ostands}}
+    </a>
+
+
+
+</div>
+    </div>
+  </ion-content>
+</ion-view>

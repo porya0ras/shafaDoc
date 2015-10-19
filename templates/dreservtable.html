@@ -1,0 +1,87 @@
+﻿<ion-view view-title="رزرو وفت ملاقات">
+    <ion-content class="padding ltr" ng-controller="Docs">
+        <input type="text" class=" rtl form-control" ng-change="getDocDateTime(stateParams.docid,dt)"
+               datepicker-popup-persian="{{format}}" ng-model="dt" is-open="persianIsOpen"
+               datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true"
+               close-text="بستن" current-text="امروز" clear-text="پاک کردن" disabled/>
+
+
+        <button class="button button-full button-positive" ng-click="openPersian($event)">
+            انتخاب تاریخ
+        </button>
+        <br>
+
+        <div class="form-group rtl">
+            <div class="input-label col">
+                انتخاب زمان ملاقات
+            </div>
+
+
+            <select ng-repeat="row in docdatetime" class="form-control">
+
+                <option ng-hide="row.time1==''" value="time1">09:00 | ظرفیت {{row.time1}} نفر</option>
+                <option ng-hide="row.time2==''" value="time2">09:15 | ظرفیت {{row.time2}} نفر</option>
+                <option ng-hide="row.time3==''" value="time3">09:30 | ظرفیت {{row.time3}} نفر</option>
+                <option ng-hide="row.time4==''" value="time4">09:45 | ظرفیت {{row.time4}} نفر</option>
+                <option ng-hide="row.time5==''" value="time5">10:00 | ظرفیت {{row.time5}} نفر</option>
+                <option ng-hide="row.time6==''" value="time6">10:15 | ظرفیت {{row.time6}} نفر</option>
+                <option ng-hide="row.time7==''" value="time7">10:30 | ظرفیت {{row.time7}} نفر</option>
+                <option ng-hide="row.time8==''" value="time8">10:45 | ظرفیت {{row.time8}} نفر</option>
+                <option ng-hide="row.time9==''" value="time9">11:00 | ظرفیت {{row.time9}} نفر</option>
+                <option ng-hide="row.time10==''" value="time10">11:15 | ظرفیت {{row.time10}} نفر</option>
+                <option ng-hide="row.time11==''" value="time11">11:30 | ظرفیت {{row.time11}} نفر</option>
+                <option ng-hide="row.time12==''" value="time12">11:45 | ظرفیت {{row.time12}} نفر</option>
+                <option ng-hide="row.time13==''" value="time13">12:00 | ظرفیت {{row.time13}} نفر</option>
+                <option ng-hide="row.time14==''" value="time14">12:15 | ظرفیت {{row.time14}} نفر</option>
+                <option ng-hide="row.time15==''" value="time15">12:30 | ظرفیت {{row.time15}} نفر</option>
+                <option ng-hide="row.time16==''" value="time16">12:45 | ظرفیت {{row.time16}} نفر</option>
+                <option ng-hide="row.time17==''" value="time17">13:00 | ظرفیت {{row.time17}} نفر</option>
+                <option ng-hide="row.time18==''" value="time18">13:15 | ظرفیت {{row.time18}} نفر</option>
+                <option ng-hide="row.time19==''" value="time19">13:30 | ظرفیت {{row.time19}} نفر</option>
+                <option ng-hide="row.time20==''" value="time20">13:45 | ظرفیت {{row.time20}} نفر</option>
+                <option ng-hide="row.time21==''" value="time21">14:00 | ظرفیت {{row.time21}} نفر</option>
+                <option ng-hide="row.time22==''" value="time22">14:15 | ظرفیت {{row.time22}} نفر</option>
+                <option ng-hide="row.time23==''" value="time23">14:30 | ظرفیت {{row.time23}} نفر</option>
+                <option ng-hide="row.time24==''" value="time24">14:45 | ظرفیت {{row.time24}} نفر</option>
+                <option ng-hide="row.time25==''" value="time25">15:00 | ظرفیت {{row.time25}} نفر</option>
+                <option ng-hide="row.time26==''" value="time26">15:15 | ظرفیت {{row.time26}} نفر</option>
+                <option ng-hide="row.time27==''" value="time27">15:30 | ظرفیت {{row.time27}} نفر</option>
+                <option ng-hide="row.time28==''" value="time28">15:45 | ظرفیت {{row.time28}} نفر</option>
+                <option ng-hide="row.time29==''" value="time29">16:00 | ظرفیت {{row.time29}} نفر</option>
+                <option ng-hide="row.time30==''" value="time30">16:15 | ظرفیت {{row.time30}} نفر</option>
+                <option ng-hide="row.time31==''" value="time31">16:30 | ظرفیت {{row.time31}} نفر</option>
+                <option ng-hide="row.time32==''" value="time32">16:45 | ظرفیت {{row.time32}} نفر</option>
+                <option ng-hide="row.time33==''" value="time33">17:00 | ظرفیت {{row.time33}} نفر</option>
+                <option ng-hide="row.time34==''" value="time34">17:15 | ظرفیت {{row.time34}} نفر</option>
+                <option ng-hide="row.time35==''" value="time35">17:30 | ظرفیت {{row.time35}} نفر</option>
+                <option ng-hide="row.time36==''" value="time36">17:45 | ظرفیت {{row.time36}} نفر</option>
+                <option ng-hide="row.time37==''" value="time37">18:00 | ظرفیت {{row.time37}} نفر</option>
+                <option ng-hide="row.time38==''" value="time38">18:15 | ظرفیت {{row.time38}} نفر</option>
+                <option ng-hide="row.time39==''" value="time39">18:30 | ظرفیت {{row.time39}} نفر</option>
+                <option ng-hide="row.time40==''" value="time40">18:45 | ظرفیت {{row.time40}} نفر</option>
+                <option ng-hide="row.time41==''" value="time41">19:00 | ظرفیت {{row.time41}} نفر</option>
+                <option ng-hide="row.time42==''" value="time42">19:15 | ظرفیت {{row.time42}} نفر</option>
+                <option ng-hide="row.time43==''" value="time43">19:30 | ظرفیت {{row.time43}} نفر</option>
+                <option ng-hide="row.time44==''" value="time44">19:45 | ظرفیت {{row.time44}} نفر</option>
+                <option ng-hide="row.time45==''" value="time45">20:00 | ظرفیت {{row.time45}} نفر</option>
+                <option ng-hide="row.time46==''" value="time46">20:15 | ظرفیت {{row.time46}} نفر</option>
+                <option ng-hide="row.time47==''" value="time47">20:30 | ظرفیت {{row.time47}} نفر</option>
+                <option ng-hide="row.time48==''" value="time48">20:45 | ظرفیت {{row.time48}} نفر</option>
+                <option ng-hide="row.time49==''" value="time49">21:00 | ظرفیت {{row.time49}} نفر</option>
+                <option ng-hide="row.time50==''" value="time50">21:15 | ظرفیت {{row.time50}} نفر</option>
+                <option ng-hide="row.time51==''" value="time51">21:30 | ظرفیت {{row.time51}} نفر</option>
+                <option ng-hide="row.time52==''" value="time52">21:45 | ظرفیت {{row.time52}} نفر</option>
+                <option ng-hide="row.time53==''" value="time53">22:00 | ظرفیت {{row.time53}} نفر</option>
+                <option ng-hide="row.time54==''" value="time54">22:15 | ظرفیت {{row.time54}} نفر</option>
+                <option ng-hide="row.time55==''" value="time55">22:30 | ظرفیت {{row.time55}} نفر</option>
+                <option ng-hide="row.time56==''" value="time56">22:45 | ظرفیت {{row.time56}} نفر</option>
+            </select>
+        </div>
+
+        <a class="button button-full button-positive" ng-show="$root.isLogin"  href="#/app/browse"><i class="fa fa-check"></i>
+            رزرو کردن
+        </a>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,164 @@
+/* Empty. Add your own CSS if you like */
+#searchin
+{
+  text-align: center !important;
+ width: 80%;
+  border-bottom-left-radius: 11px;
+  border-top-right-radius: 17px;
+      height: 48px;
+      top: 22px;
+      right: 7px;
+
+}
+ion-view{
+  direction: rtl;
+}
+.navbar1
+{
+  background-color: black !important;
+}
+.ltr
+{
+  direction: ltr;
+}
+.rtl{
+direction:rtl;
+}
+#searchbtn
+{
+
+
+width: 20%;
+height: 10px;
+margin-top: 15px;
+margin-bottom: 15px;
+    border-top-right-radius: 20px;
+
+
+}
+.bar.bar-stable
+{
+  background-color: #1AB4F7 !important;
+}
+.platform-android .bar .title
+{
+  text-align: center;
+  }
+  #backsignup
+  {
+    background-color: #1AB4F7;
+    height: 200px;
+
+  }
+  #browsehr
+  {
+  border-color: #EBEBEB;
+  }
+  .item .item-icon-left .item-icon-right
+  {
+    margin-top: -19px;
+  }
+  #signupbutton
+  {
+  margin-top: 2px;
+  margin-left: 20px;
+  min-width: 138px;
+  background-color: blue !important;
+  }
+  #signupbutton1
+  {
+    margin-top: 2px;
+    min-width: 138px;
+  }
+  .slideimg
+  {
+    height: 100%;
+    width: 100%;
+  }
+  .angular-google-map-container {
+  height: 100%;
+}
+  .scroll {
+    height: 100%;
+}
+
+#fullmap {
+    width: 100% !important;
+    height: 90% !important;
+}
+map {
+  display: block;
+ width: 100%;
+    height: 200px;
+    z-index:auto;
+}
+.slider
+{
+  direction: ltr;
+}
+.scroll-content
+{
+  background-color: #1AB4F7 !important;
+}
+a.item {
+  margin-bottom: 5px;
+}
+.tabs{
+  background-color: #1AB4F7 !important;
+}
+.list-inset .item:last-child
+{
+  text-align: center;
+}
+#triangle {
+	width: 0;
+  float: left;
+	height: 0;
+	border-top: 100px solid red;
+	border-right: 100px solid transparent;
+}
+#ostanbrowse
+{
+  text-align: center;
+
+}
+#logoconsis
+{
+padding: 20px;
+
+}
+
+#logodiver
+{
+  margin-top: 20px
+}
+.innershadow {
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+   border-radius: 34px !important;
+background-color: #51697D;
+border-color: black;
+color: #1D1313;
+}
+.loginbox
+{
+  border-radius: 34px
+}
+.footerlogin
+{
+
+}
+.dropdown-menu {
+    top :60px !important;
+}
+#textleft
+{
+    text-align: center;
+    padding-right: 0px !important;
+
+}
+.padding-right-20
+{
+    padding-right: 20px;
+}

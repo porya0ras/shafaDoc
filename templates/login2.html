@@ -1,0 +1,31 @@
+<ion-view ng-controller="LogIn" cache-view="false" ng-init="init()"  view-title="شفاداک " hide-nav-bar="true" type="bar-stable" >
+  <ion-content  >
+    <div id="logodiver">
+    <img  id="logoconsis" ng-src="img/Logo.png" width="100%"
+    height="100%"/>
+</div>
+
+      <div class="list list-inset loginbox">
+        <label class="item item-input innershadow" >
+          <i class="fa fa-user padding-right-20"></i>
+          <input ng-model="username" type="text" placeholder=" نام کاربری">
+        </label>
+      </div>
+      <div class="list list-inset loginbox">
+        <label class="item item-input innershadow" >
+          <i class=" fa fa-lock padding-right-20"></i>
+          <input ng-model="password" type="password" placeholder="رمز عبور">
+        </label>
+
+</div>
+<button class=" button button-energized" ng-click="Login(username,password,'client');">
+  ورود
+</button>
+
+      </ion-content>
+      <div class="bar bar-footer footerlogin">
+        <div class="title"></div>
+        <a class="button button-clear" ng-click="goWithoutlogin()">ورود بدون شناسه</a>
+      </div>
+
+</ion-view>

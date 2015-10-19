@@ -1,0 +1,78 @@
+﻿<ion-view view-title="پروفایل بیمارستان">
+    <ion-content class="padding" ng-controller="Hospital" ng-init="transfer2Hpro();">
+        <div class="list card" >
+
+            <div class="item item-avatar sharp">
+                <img ng-src="{{httpsite + hospital.e.pic.replace('~','')}}">
+                <h2>{{hospital.e.fl}}</h2>
+                <p>{{hospital.e.experience}}</p>
+            </div>
+
+            <div class="item item-body">
+                <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                    <ion-slide>
+                        <img ng-src="{{httpsite +'/'+ hospital.e.pic1}}" class="slideimg">
+                    </ion-slide>
+                    <ion-slide>
+                        <img ng-src="{{httpsite +'/'+ hospital.e.pic2}}" class="slideimg">
+                    </ion-slide>
+                    <ion-slide>
+                        <img ng-src="{{httpsite +'/'+ hospital.e.pic3}}" class="slideimg">
+                    </ion-slide>
+                </ion-slide-box>
+                <p>
+                    حوضه تخصص : {{hospital.e.Statement}}
+                    <br/>
+                    شهر : {{hospital.e.city}}
+
+                </p>
+
+                <div class="list">
+                    <div class="item item-divider">
+                        ساعات ملاقات
+                    </div>
+
+                    <a class="item" href="#">
+                        <p> {{hospital.e.worktime}}</p>
+                    </a>
+                    <div class="item item-divider">
+                        شماره تماس
+                    </div>
+
+                    <a class="item" href="#">
+                        <p> {{hospital.e.tell}}</p>
+                    </a>
+                    <div class="item item-divider">
+                        آدرس
+                    </div>
+
+                    <a class="item" href="#">
+                        <p> {{hospital.e.address}}</p>
+                    </a>
+                </div>
+
+
+            </div>
+            <map data-tap-disabled="true"
+                 on-create="mapCreated(map,hospital.map.latitude0,hospital.map.latitude1)"></map>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+
+        </div>
+        <div>
+            <ion-scroll style="width: 100%; height: 200px;" >
+                <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{hospital.e.docid}}/{{row.dhid}}">
+                    <h2>{{row.fl}}</h2>
+
+                    <p>{{row.spe}}</p>
+                </a>
+            </ion-scroll>
+            </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,14 @@
+ <ion-view view-title="نقشه" >
+     
+      <ion-content>
+
+          <map id="fullmap" data-tap-disabled="true" on-create="mapCreated(map,stateParams.l0,stateParams.l1)"></map>
+         
+      </ion-content>
+     <div class="bar bar-footer footerlogin ltr">
+         <!--button class="button button-clear" ng-click="Screanshot()">ذخیره </button-->
+         <div  class="title" ></div>
+         <button class="button button-clear" ng-click="calcRoute()">مسیر دهی</button>
+
+     </div>
+    </ion-view>

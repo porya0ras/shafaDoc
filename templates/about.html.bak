@@ -1,0 +1,13 @@
+<ion-view view-title="درباره ما" >
+  <ion-content>
+    <div class="list list-inset" ng-controller="Ostans">
+
+        <div class="item" ng-repeat="row in ostans">
+          {{row.ostands}}
+        </div>
+
+
+
+    </div>
+  </ion-content>
+</ion-view>

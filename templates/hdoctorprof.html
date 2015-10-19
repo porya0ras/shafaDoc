@@ -1,0 +1,28 @@
+<ion-view view-title="پروفایل پزشک">
+    <ion-content class="padding" ng-controller="Docs" ng-init="getHospitalDocProFile(stateParams.hdocid);getHospitalDocDateTime(stateParams.hid,stateParams.hdocid);" >
+        <div class="list card"  >
+            <div class="item item-avatar">
+                <img ng-src="img/docavatar.jpg"/>
+                <h2>{{hdocprofile.fl}}</h2>
+                <p>{{hdocprofile.spe}}</p>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div >
+        <div class="input-label col">
+        انتخاب زمان ملاقات
+        </div>
+        <select class="form-control">
+            <option ng-repeat="row in hdocdatetime" >{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}} | {{row.time}} |<br> ظرفیت باقیمانده : {{row.pnum-row.count}}</option>
+        </select>
+
+        <button class="button button-full button-positive" ng-show="$root.isLogin"><i class="fa fa-check"></i>
+            رزرو کردن
+        </button>
+</div>
+            <br />
+
+
+    </ion-content>
+</ion-view>
