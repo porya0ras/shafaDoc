@@ -10,6 +10,28 @@
       right: 7px;
 
 }
+.search{
+    margin-top: 4px !important;
+}
+.select-city
+{
+    margin-top: 40px;
+    height: 50px;
+}
+.select-city select
+{
+    padding: 14px 48px 16px 32px;
+    right: auto;
+    left: 0 !important;
+    max-width: 95% !important;
+    width: 80% !important;
+
+}
+.item-select::after{
+    left: 14px !important;
+    right: auto;
+
+}
 ion-view{
   direction: rtl;
 }

@@ -531,9 +531,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 });
         };
     })
-    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading) {
+    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService) {
 
         $scope.Rsearch = {};
+
         $scope.doctors = [];
         $scope.hospitals = [];
         $scope.hdoctors=[];
@@ -590,6 +591,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         };
         $scope.init = function () {
             $scope.Data = $localstorage.getObject('Data');
+            $scope.cities=ApiService.getAllCities(0);
 
             if ($scope.Data.search === undefined) {
                 $scope.Data.search = new Array();
@@ -828,8 +830,44 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 }
 
             }, 'jpg', 50, 'myScreenShot');
-        }
+        };
         $scope.positions = [];
         $scope.pos={};
-    });
+    })
+    .service('ApiService',function($http,$ionicLoading,$ionicPopup)
+    {
+        this.getAllCities=function($id)
+
+            {
+                $scope.loading = $ionicLoading.show({
+                    showBackdrop: false
+                });
+                var xsrf = 'Data=' + $id + '&Pass=' + Pass + '&Func=allcitys';
+                $http({
+                    method: 'POST',
+                    url: '/api/Location',
+                    data: xsrf,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).then(function (response) {
+
+                        if (response.data.HRM.StatusCode == 200) {
+                            $scope.cities = response.data.Data;
+                            $ionicLoading.hide();
+                        }
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                        $ionicPopup.alert({
+                            title: 'اخطار',
+                            content: ' ارتباط با سرور برقرار نیست'
+                        }).then(function (res) {
+                            console.log('Failed Connection!');
+                        });
+                    });
+            };
+
+    })
+
+;
 

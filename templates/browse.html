@@ -1,7 +1,41 @@
 <ion-view view-title="شفاداک " type="bar-stable" hide-nav-bar="false">
+
+
+    <label class="bar bar-sub-header item item-input item-select select-city">
+        <div class="input-label">
+            نام شهر :
+        </div>
+        <select>
+            <option>Blue</option>
+            <option selected>Green</option>
+            <option>Red</option>
+        </select>
+    </label>
+    <div ng-controller="Search" ng-init="init()" class=" bar bar-sub-header item-input-inset ltr">
+        <!--label class="item item-input ">
+            <input  type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" >
+        </label>
+
+        <button class="button button-energized icon ion-search col col-20"
+                ng-click="getResult(selected)">
+
+        </button-->
+
+
+
+        <label class="item-input-wrapper search">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
+        </label>
+        <button class="button button-clear button-positive">
+            جستجو
+        </button>
+
+    </div>
+
     <ion-content>
 
-        <div class="list list-inset scroll-content ">
+        <!--div class="list list-inset scroll-content ">
             <div ng-controller="Search" ng-init="init()" class="row">
                 <label class="item item-input col col-80 " id="searchin">
                     <input id="textleft" class="searchbar " type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" >
@@ -23,7 +57,9 @@
                     </div>
 
             </ion-scroll>
-        </div>
-        </div>
+        </div
+        </div-->
+
+
     </ion-content>
 </ion-view>
