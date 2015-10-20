@@ -1,4 +1,4 @@
-<ion-view view-title="شفاداک " type="bar-stable" hide-nav-bar="false">
+<ion-view view-title="شفاداک " type="bar-stable" hide-nav-bar="false" ng-controller="Search" ng-init="init()">
 
 
     <label class="bar bar-sub-header item item-input item-select select-city">
@@ -6,12 +6,12 @@
             نام شهر :
         </div>
         <select>
-            <option>Blue</option>
-            <option selected>Green</option>
-            <option>Red</option>
+            <option ng-repeat="row in cities" value="{{row.cityid}}">{{row.city}}</option>
+
         </select>
     </label>
-    <div ng-controller="Search" ng-init="init()" class=" bar bar-sub-header item-input-inset ltr">
+
+    <div class=" bar bar-sub-header item-input-inset ltr">
         <!--label class="item item-input ">
             <input  type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" >
         </label>
@@ -22,10 +22,10 @@
         </button-->
 
 
-
         <label class="item-input-wrapper search">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
+            <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3"
+                   placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
         </label>
         <button class="button button-clear button-positive">
             جستجو
@@ -33,7 +33,7 @@
 
     </div>
 
-    <ion-content>
+    <ion-content class="browse-content">
 
         <!--div class="list list-inset scroll-content ">
             <div ng-controller="Search" ng-init="init()" class="row">
@@ -59,7 +59,16 @@
             </ion-scroll>
         </div
         </div-->
+        <div class="sp ltr " ng-if="selected==''">
+            <div class="row">
+                <div class="col">.col</div>
+                <div class="col">.col</div>
+                <div class="col">.col</div>
+                <div class="col">.col</div>
+                <div class="col">.col</div>
+            </div>
 
+        </div>
 
     </ion-content>
 </ion-view>

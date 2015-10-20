@@ -27,6 +27,14 @@
     width: 80% !important;
 
 }
+.browse-content
+{
+    margin-top: 100px;
+}
+.browse-content .row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
 .item-select::after{
     left: 14px !important;
     right: auto;

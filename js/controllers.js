@@ -531,7 +531,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 });
         };
     })
-    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService) {
+    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService,userService) {
 
         $scope.Rsearch = {};
 
@@ -540,7 +540,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         $scope.hdoctors=[];
         $scope.speciality=[];
         $scope.Data = {};
-        $scope.selected = undefined;
+        $scope.selected = '';
         $scope.searchs = [];
         $scope.getResult = function ($search) {
             $ionicLoading.show({
@@ -589,9 +589,38 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             $scope.searchs = $scope.Data.search;
             $localstorage.setObject('Data', $scope.Data);
         };
+        $scope.getCities = function () {
+            $scope.loading = $ionicLoading.show({
+                showBackdrop: false
+            });
+            var xsrf = 'Pass=' + Pass + '&Func=allcitys';
+            $http({
+                method: 'POST',
+                url: '/api/Location',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        $scope.cities = response.data.Data;
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        };
         $scope.init = function () {
             $scope.Data = $localstorage.getObject('Data');
-            $scope.cities=ApiService.getAllCities(0);
+            /*$scope.cities=userService.getAllCities();*/
+            $scope.getCities();
 
             if ($scope.Data.search === undefined) {
                 $scope.Data.search = new Array();
@@ -836,13 +865,71 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
     })
     .service('ApiService',function($http,$ionicLoading,$ionicPopup)
     {
-        this.getAllCities=function($id)
+        return({
+            getAllCities: getAllCities
+        });
+        function getAllCities($id)
 
             {
-                $scope.loading = $ionicLoading.show({
-                    showBackdrop: false
-                });
+
                 var xsrf = 'Data=' + $id + '&Pass=' + Pass + '&Func=allcitys';
+                var request= $http({
+                    method: 'POST',
+                    url: '/api/Location',
+                    data: xsrf,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                });
+                return( request.then( handleSuccess, handleError ) );
+                    /*.then(function (response) {
+
+                        if (response.data.HRM.StatusCode == 200) {
+
+                            return response.data.Data;
+
+                        }
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+
+                        $ionicPopup.alert({
+                            title: 'اخطار',
+                            content: ' ارتباط با سرور برقرار نیست'
+                        }).then(function (res) {
+                            console.log('Failed Connection!');
+                        });
+                    });*/
+            };
+        function handleError( response ) {
+            // The API response from the server should be returned in a
+            // nomralized format. However, if the request was not handled by the
+            // server (or what not handles properly - ex. server error), then we
+            // may have to normalize it on our end, as best we can.
+            if (
+                ! angular.isObject( response.data ) ||
+                ! response.data.message
+            ) {
+                 console.log( "An unknown error occurred." ) ;
+            }
+            // Otherwise, use expected error message.
+            console.log(response.data.message );
+
+            return null;
+        }
+        function handleSuccess( response ) {
+            if (response.data.HRM.StatusCode == 200) {
+                return ( response.data );
+            }
+            else{
+                return null;
+            }
+        }
+
+    })
+    .factory('userService', function($http) {
+        return {
+            getAllCities: function(){
+                var xsrf ='&Pass=' + Pass + '&Func=allcitys';
                 $http({
                     method: 'POST',
                     url: '/api/Location',
@@ -851,22 +938,21 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 }).then(function (response) {
 
                         if (response.data.HRM.StatusCode == 200) {
-                            $scope.cities = response.data.Data;
-                            $ionicLoading.hide();
+
+                            console.log(response.data.Data);
+                            return response.data.Data;
+
+
                         }
                         // success
                     },
                     function (response) { // optional
                         // failed
-                        $ionicPopup.alert({
-                            title: 'اخطار',
-                            content: ' ارتباط با سرور برقرار نیست'
-                        }).then(function (res) {
-                            console.log('Failed Connection!');
-                        });
+                        console.log("ERR!");
+                        return null;
                     });
-            };
-
+            }
+        }
     })
 
 ;
