@@ -548,7 +548,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 showBackdrop: false
             });
             $scope.saveSearch($search);
-            var xsrf = 'Pass=' + Pass + '&Data=' + $search + '&Func=search';
+            var sendSearch=new Object();
+            sendSearch.search=$search;
+            sendSearch.city=$scope.city;
+            var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(sendSearch) + '&Func=search';
             $http({
                 method: 'POST',
                 url: '/api/Search',
