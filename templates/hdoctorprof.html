@@ -1,22 +1,32 @@
 <ion-view view-title="پروفایل پزشک">
-    <ion-content class="padding" ng-controller="Docs" ng-init="getHospitalDocProFile(stateParams.hdocid);getHospitalDocDateTime(stateParams.hid,stateParams.hdocid);" >
+    <ion-content class="padding" ng-controller="Docs" ng-init="getHospitalDocProFile(stateParams.hdocid)" >
         <div class="list card"  >
             <div class="item item-avatar">
-                <img ng-src="img/docavatar.jpg"/>
+                <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ hdocprofile.pic.replace('~/','')}}">
                 <h2>{{hdocprofile.fl}}</h2>
                 <p>{{hdocprofile.spe}}</p>
+                <span class="font-size-10">{{hdocprofile.Statement}}</span>
+                <br>
+                <span class="font-size-12">فارغ التخصیل از : {{hdocprofile.el}}</span>
+                <p>مسلط به زبان های : {{hdocprofile.Languages_Spoken}}</p>
             </div>
-            <br />
-            <br />
+
+
+
         </div>
+
         <div >
         <div class="input-label col">
         انتخاب زمان ملاقات
         </div>
         <select class="form-control">
-            <option ng-repeat="row in hdocdatetime" >{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}} | {{row.time}} |<br> ظرفیت باقیمانده : {{row.pnum-row.count}}</option>
+            <optgroup ng-repeat="row in hdocdatetime" label=" {{row.time}} | ظرفیت باقیمانده : {{row.pnum-row.count}}">
+            <option>{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}}</option>
+            </optgroup>
         </select>
+            <br>
 
+        <label class="has-warning" ng-show="!$root.isLogin">لطفا برای رزور کردن وارد حساب کاربری خود شوید!</label>
         <button class="button button-full button-positive" ng-show="$root.isLogin"><i class="fa fa-check"></i>
             رزرو کردن
         </button>

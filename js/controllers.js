@@ -236,7 +236,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }).then(function (response) {
 
                     if (response.data.HRM.StatusCode == 200) {
-                        $scope.hdocdatetime = response.data.Data;
+                        $scope.hdocdatetime = response.data.Data.$values;
                         console.log($scope.hdocdatetime);
                     }
                     // success
