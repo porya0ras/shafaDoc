@@ -35,6 +35,10 @@
     margin-left: 0px;
     margin-right: 0px;
 }
+.browse-content .sp{
+    font-size: 11px;
+    text-align: center;
+}
 .item-select::after{
     left: 14px !important;
     right: auto;
