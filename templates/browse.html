@@ -5,7 +5,7 @@
         <div class="input-label">
             نام شهر :
         </div>
-        <select>
+        <select ng-model="city">
             <option ng-repeat="row in cities" value="{{row.cityid}}">{{row.city}}</option>
 
         </select>
@@ -25,15 +25,16 @@
         <label class="item-input-wrapper search">
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3"
-                   placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
+                   placeholder=" بر اساس  تخصص یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
         </label>
-        <button class="button button-clear button-positive">
+        <button class="button button-clear button-positive" ng-click="getResult(selected)">
             جستجو
         </button>
 
     </div>
 
     <ion-content class="browse-content">
+
 
         <!--div class="list list-inset scroll-content ">
             <div ng-controller="Search" ng-init="init()" class="row">
@@ -59,15 +60,76 @@
             </ion-scroll>
         </div
         </div-->
+        <div class="list" ng-if="selected!=''">
+            <div class="item item-divider" ng-if="doctors.length>0">
+                دکتر ها
+            </div>
+            <a class="item item-avatar" ng-repeat="row in doctors" href="#">
+                <img src="venkman.jpg">
+                <h2>{{row.fl}}</h2>
+                <p>{{row.specialty}}</p>
+            </a>
+            <div class="item item-divider" ng-if="hospitals.length>0">
+                بیمارستانها
+            </div>
+            <a class="item item-thumbnail-left"  ng-repeat="row in hospitals" href="#">
+                <img src="cover.jpg">
+                <h2>{{row.fl}}</h2>
+                <p>{{row.experience}}</p>
+                <p>{{row.specialty}}</p>
+            </a>
+            <div class="item item-divider" ng-if="hdoctors.length>0">
+                پزشک بیمارستان
+            </div>
+            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#">
+                <img src="venkman.jpg">
+                <h2>{{row.e.fl}}</h2>
+                <p>{{row.e.spe}}</p>
+                <span>بیمارستان : {{row.hname}}</span>
+            </a>
+            <div class="item item-divider" ng-if="speciality.length>0" >
+                تخصص ها
+            </div>
+            <a class="item " ng-repeat="row in speciality" href="#">
+                <h2>{{row.speciality1}}</h2>
+                </a>
+        </div>
         <div class="sp ltr " ng-if="selected==''">
             <div class="row">
-                <div class="col">.col</div>
-                <div class="col">.col</div>
-                <div class="col">.col</div>
-                <div class="col">.col</div>
-                <div class="col">.col</div>
+                <div class="col bgsp1"><img src="img/Brain.png"><p> مغز و اعصاب</p></div>
+                <div class="col bgsp2"><img src="img/Dentist.png"><p>دندان پزشکی</p></div>
+                <div class="col bgsp3"><img src="img/Dermatologist.png"><p>پوست و مو</p></div>
+                <div class="col bgsp4"><img src="img/Digestive.png"><p>گوارش</p></div>
             </div>
+            <div class="row">
+                <div class="col"><img src="img/ENT.png"><p>گوش،حلق،بینی</p></div>
+                <div class="col"><img src="img/Eye.png"><p>چشم پزشکی</p></div>
+                <div class="col"><img src="img/General.png"><p>پزشک عمومی</p></div>
+                <div class="col"><img src="img/Gynecologist.png"><p>زنان و زایمان</p></div>
 
+            </div>
+            <div class="row">
+                <div class="col"><img src="img/Hear.png"><p>قلب</p></div>
+                <div class="col"><img src="img/Infection.png"><p>بیماریهای عفونی</p></div>
+                <div class="col"><img src="img/Inner.png"><p>داخلی</p></div>
+                <div class="col"><img src="img/Kidney.png"><p>کلیه و مجاری ادراری</p></div>
+
+            </div>
+            <div class="row">
+                <div class="col"><img src="img/Lung.png"><p>بیماریهای تنفسی</p></div>
+                <div class="col"><img src="img/Nutrition.png"><p>تغذیه</p></div>
+                <div class="col"><img src="img/Orthopaedics.png"><p>ارتوپدی</p></div>
+                <div class="col"><img src="img/Pediatrician.png"><p>کودکان</p></div>
+            </div>
+            <div class="row">
+                <div class="col "></div>
+                <div class="col "><img src="img/Psychology.png"><p>روانپزشکی و مشاوره</p></div>
+                <div class="col"><img src="img/Surgery.png"><p>جراحی عمومی</p></div>
+                <div class="col "></div>
+            </div>
+            <button class="rtl button button-clear button-positive button-full">
+                موارد بیشتر...
+            </button>
         </div>
 
     </ion-content>
