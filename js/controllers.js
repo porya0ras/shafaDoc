@@ -1,10 +1,11 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
+
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope) {
 
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
@@ -12,7 +13,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         // listen for the $ionicView.enter event:
         //$scope.$on('$ionicView.enter', function(e) {
         //});
-
+        $rootScope.httpsite="http://shafadoc.tbzmed.ac.ir";
         // Form data for the login modal
         $scope.loginData = {};
 
@@ -534,7 +535,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
     .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService,userService) {
 
         $scope.Rsearch = {};
-
+        $scope.city='';
         $scope.doctors = [];
         $scope.hospitals = [];
         $scope.hdoctors=[];
@@ -551,6 +552,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var sendSearch=new Object();
             sendSearch.search=$search;
             sendSearch.city=$scope.city;
+            console.log(sendSearch);
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(sendSearch) + '&Func=search';
             $http({
                 method: 'POST',
@@ -606,6 +608,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.cities = response.data.Data;
+                        $scope.city=$scope.cities[0].city;
                         $ionicLoading.hide();
                     }
                     // success

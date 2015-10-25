@@ -6,7 +6,7 @@
             نام شهر :
         </div>
         <select ng-model="city">
-            <option ng-repeat="row in cities" value="{{row.city}}">{{row.city}}</option>
+            <option ng-repeat="row in cities" value="{{row.city}}" selected>{{row.city}}</option>
 
         </select>
     </label>
@@ -65,15 +65,15 @@
                 دکتر ها
             </div>
             <a class="item item-avatar" ng-repeat="row in doctors" href="#">
-                <img src="venkman.jpg">
+                <img class="may-avatar" ng-src="{{$root.httpsite + row.pic.replace('~','')}}">
                 <h2>{{row.fl}}</h2>
                 <p>{{row.specialty}}</p>
             </a>
             <div class="item item-divider" ng-if="hospitals.length>0">
                 بیمارستانها
             </div>
-            <a class="item item-thumbnail-left"  ng-repeat="row in hospitals" href="#">
-                <img src="cover.jpg">
+            <a class="item item-thumbnail-left"  ng-repeat="row in hospitals" href="#/app/hprof/{{row.docid}}">
+                <img ng-src="{{$root.httpsite+'/'+row.pic}}">
                 <h2>{{row.fl}}</h2>
                 <p>{{row.experience}}</p>
                 <p>{{row.specialty}}</p>
@@ -81,11 +81,11 @@
             <div class="item item-divider" ng-if="hdoctors.length>0">
                 پزشک بیمارستان
             </div>
-            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#">
-                <img src="venkman.jpg">
+            <a class="item item-avatar " ng-repeat="row in hdoctors" href="#">
+                <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ row.e.pic.replace('~/','')}}">
                 <h2>{{row.e.fl}}</h2>
                 <p>{{row.e.spe}}</p>
-                <span>بیمارستان : {{row.hname}}</span>
+                <span>بیمارستان : {{row.fl}}</span>
             </a>
             <div class="item item-divider" ng-if="speciality.length>0" >
                 تخصص ها

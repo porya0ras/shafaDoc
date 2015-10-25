@@ -1,7 +1,7 @@
 <ion-view view-title="شهرهای استان" >
   <ion-content >
     <div class="list list-inset" ng-controller="Ostans" ng-init="getCities(stateParams.idostan)">
-        <div class="item" ng-repeat="row in cities" ng-click="transfer('{{row.city1}}',{{row.code}})" >
+        <div class="item" ng-repeat="row in cities" ng-click="transfer('{{row.city1}}',row.code)" >
           {{row.city1}}
         </div>
     </div>
