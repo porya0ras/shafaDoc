@@ -142,6 +142,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hdocprofile = response.data.Data;
+                        $scope.getHospitalDocDateTime($stateParams.hid,$stateParams.hdocid);
                         $ionicLoading.hide();
                     }
                     // success
@@ -225,6 +226,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var O=new Object();
             O.hid=$hid;
             O.docid=$hdocid;
+            console.log(O);
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=hospitaldocdatetime';
             $http({
                 method: 'POST',
@@ -697,6 +699,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hospital = response.data.Data;
+                        console.log($scope.hospital);
                         $ionicLoading.hide();
                     }
                     // success
@@ -758,7 +761,8 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }).then(function (response) {
 
                     if (response.data.HRM.StatusCode == 200) {
-                        $scope.hdoctors = response.data.Data;
+                        $scope.hdoctors = response.data.Data.$values;
+
                     }
                     // success
                 },

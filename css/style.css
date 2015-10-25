@@ -129,6 +129,7 @@ map {
 .slider
 {
   direction: ltr;
+    margin-bottom: 10px;
 }
 .scroll-content
 {
@@ -143,6 +144,10 @@ a.item {
 .list-inset .item:last-child
 {
   text-align: center;
+}
+.item p{
+    margin-top: 0;
+
 }
 #triangle {
 	width: 0;
@@ -199,4 +204,11 @@ color: #1D1313;
 .may-avatar{
     max-height: 60px !important;
 
+}
+.hp-doc-span
+{
+    font-size: 10px;
+}
+.hp-doc-card a{
+    margin-bottom: 0;
 }
