@@ -545,9 +545,18 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         $scope.Data = {};
         $scope.selected = '';
         $scope.searchs = [];
+        $scope.$watch('selected', function (newValue, oldValue) {
+           if(newValue=='')
+           {
+               $scope.doctors=[];
+               $scope.hospitals = [];
+               $scope.hdoctors = [];
+               $scope.speciality = [];
+           }
+        }, true);
         $scope.getResult = function ($search) {
             $ionicLoading.show({
-                template:'در حال جستجو کردن ...',
+                template:'...در حال جستجو کردن ',
                 showBackdrop: false
             });
             $scope.saveSearch($search);
