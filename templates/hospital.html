@@ -72,7 +72,7 @@
 
 
             </div>
-                <a class="item item-avatar" ng-repeat="hdoc in hdoctors" href="#/app/hdoctorprof/{{hospital.e.docid}}/{{hdoc.dhid}}">
+                <a class="item item-avatar" ng-repeat="hdoc in hdoctors | orderBy: 'lnamed'" href="#/app/hdoctorprof/{{hospital.e.docid}}/{{hdoc.dhid}}">
                     <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ hdoc.pic.replace('~/','')}}">
                     <h2>{{hdoc.fl}}</h2>
 

@@ -218,3 +218,7 @@ color: #1D1313;
 .has-warning{
     color: #c70000;
 }
+.result-count-search{
+    font-size: 10px;
+    color: gray;
+}
