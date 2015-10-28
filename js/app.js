@@ -65,16 +65,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic.utils', 'ngCor
                     }
                 }
             })
-            .state('app.cityresult', {
+            .state('app.specialResult', {
                 url: "/cityresult",
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/cityresult.html'
+                        templateUrl: 'templates/specialResult.html'
                     }
                 }
             })
 
-            .state('app.cityresult.hospitals', {
+            .state('app.specialResult.hospitals', {
                 url: '/hospitals',
                 views: {
                     'hospitals-tab': {
@@ -82,7 +82,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic.utils', 'ngCor
                     }
                 }
             })
-            .state('app.cityresult.doctors', {
+            .state('app.specialResult.doctors', {
                 url: '/doctors',
                 views: {
                     'doctors-tab': {

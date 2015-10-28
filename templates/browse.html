@@ -68,7 +68,7 @@
             <div class="item item-divider" ng-if="doctors.length>0">
                 دکتر ها
             </div>
-            <a class="item item-avatar" ng-repeat="row in doctors" href="#">
+            <a class="item item-avatar" ng-repeat="row in doctors" href="#/app/doctorprof/{{row.docid}}">
                 <img class="may-avatar" ng-src="{{$root.httpsite + row.pic.replace('~','')}}">
                 <h2>{{row.fl}}</h2>
                 <p>{{row.specialty}}</p>
