@@ -545,6 +545,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         $scope.Data = {};
         $scope.selected = '';
         $scope.searchs = [];
+        $scope.Isnull=false;
         $scope.$watch('selected', function (newValue, oldValue) {
            if(newValue=='')
            {
@@ -553,6 +554,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                $scope.hdoctors = [];
                $scope.speciality = [];
            }
+            $scope.Isnull=false;
         }, true);
         $scope.getResult = function ($search) {
             $ionicLoading.show({
@@ -578,6 +580,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         $scope.hospitals = JSON.parse($scope.Rsearch.hospitals);
                         $scope.hdoctors = JSON.parse($scope.Rsearch.hospitaldoctors);
                         $scope.speciality = JSON.parse($scope.Rsearch.Spe);
+                        $scope.Isnull=true;
                         $rootScope.hide4search = true;
                         $ionicLoading.hide();
 

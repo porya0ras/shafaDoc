@@ -85,7 +85,7 @@
             <div class="item item-divider" ng-if="hdoctors.length>0">
                 پزشک بیمارستان
             </div>
-            <a class="item item-avatar " ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.docid}}/{{row.dhid}}">
+            <a class="item item-avatar " ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.docid}}/{{row.e.dhid}}">
                 <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ row.e.pic.replace('~/','')}}">
                 <h2>{{row.e.fl}}</h2>
                 <p>{{row.e.spe}}</p>
@@ -96,8 +96,8 @@
             </div>
             <a class="item " ng-repeat="row in speciality" href="#">
                 <h2>{{row.speciality1}}</h2>
-                </a>
-            <div class="item item-divider" ng-if=" speciality.length==0 && hdoctors.length==0 && hospitals.length==0 && doctors.length==0"  >
+            </a>
+            <div class="item item-divider" ng-if="Isnull && speciality.length==0 && hdoctors.length==0 && hospitals.length==0 && doctors.length==0"  >
                  مطلبی موجود نیست!
             </div>
         </div>
