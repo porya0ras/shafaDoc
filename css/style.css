@@ -136,7 +136,7 @@ map {
   background-color: #ffffff  !important;
 }
 a.item {
-  margin-bottom: 5px;
+  /*margin-bottom: 5px;*/
 }
 .tabs{
   background-color: #1AB4F7 !important;

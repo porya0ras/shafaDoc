@@ -6,6 +6,14 @@
                 <h2>{{row.fl}}</h2>
                 <p>{{row.specialty}}</p>
             </a>
+            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.docid}}/{{row.dhid}}">
+                <img ng-src="{{$root.httpsite +'/'+ row.pic.replace('~','')}}">
+                <h2>{{row.fl}}</h2>
+                <p>{{row.spe}}</p>
+            </a>
+            <p ng-if="doctors.length==0 && hdoctors.length==0">
+                موردی موجود نیست !
+            </p>
         </div>
     </ion-content>
 </ion-view>

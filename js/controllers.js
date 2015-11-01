@@ -96,6 +96,35 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     });
                 });
         };
+        $scope.hdoctors=[];
+        $scope.getHDoctors=function($id){
+            $ionicLoading.show();
+            var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hdoctors';
+            $http({
+                method: 'POST',
+                url: '/api/Docs',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        if(response.data.Data!=null) {
+                            $scope.hdoctors = response.data.Data.$values;
+                        }
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        };
         $scope.getDoctors2 = function ($id) {
             $ionicLoading.show();
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=doctors2';
@@ -245,7 +274,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         $scope.initDoctors = function () {
             //console.log('location data:' + location0.city);
             $scope.getDoctors2($rootScope.spe);
+            $scope.inithDoctors();
             //console.log($scope.doctors.length);
+        };
+        $scope.inithDoctors=function()
+        {
+            $scope.getHDoctors($rootScope.spe);
         };
         $scope.httpsite = httpsite;
         $scope.hdocdatetime=[];

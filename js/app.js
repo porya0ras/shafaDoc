@@ -90,6 +90,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic.utils', 'ngCor
                     }
                 }
             })
+            .state('app.specialResult.hdoctors', {
+                url: '/hdoctors',
+                views: {
+                    'doctors-tab': {
+                        templateUrl: 'templates/hdoctors.html'
+                    }
+                }
+            })
             .state('app.signup', {
                 url: '/signup',
                 views: {

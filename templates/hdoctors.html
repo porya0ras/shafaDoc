@@ -1,12 +1,12 @@
-﻿<ion-view view-title="لیست بیمارستانها">
+<ion-view view-title="لیست دکتر های بیمارستانی">
     <ion-content class="padding">
-        <div class="list" ng-controller="Hospital" ng-init="initHospitals()">
-            <a class="item item-thumbnail-left" ng-repeat="row in hospitals" href="#/app/hprof/{{row.docid}}">
+        <div class="list" ng-controller="Docs" ng-init="inithDoctors()">
+            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/doctorprof/{{row.docid}}">
                 <img ng-src="{{$root.httpsite +'/'+ row.pic.replace('~','')}}">
                 <h2>{{row.fl}}</h2>
                 <p>{{row.specialty}}</p>
             </a>
-            <p ng-if="hospitals.length==0">
+            <p ng-if="hdoctors.length==0">
                 موردی موجود نیست !
             </p>
         </div>
