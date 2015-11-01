@@ -1,35 +1,41 @@
-<ion-view view-title="ثبت نام" hide-nav-bar="true">
-  <ion-content>
-	  <div id="backsignup">
-		  
-	
-	  </div>
-	  <div class="list list-inset">
-  <label class="item item-input" >
-    <input type="text" placeholder="شماره تلفن">
-  </label>
-   <label class="item item-input">
-    <input type="text" placeholder="نام کامل">
-  </label>
-  <label class="item item-input">
-    <input type="text" placeholder="کد ملی">
-  </label>
-   <label class="item item-input">
-    <input type="password" placeholder="رمز عبور">
-  </label>
-  <label class="item item-input">
-   <input type="password" placeholder="تکرار رمز عبور">
-  </label>
-  <button class="button button-full button-positive">
-  ثبت نام 
-</button>
-  <button class="button button-calm" id="signupbutton1">
-  بدون حساب 
-</button>
-<button class="button button-calm" id="signupbutton">
-  ورود
-</button>
-</div>
-
-  </ion-content>
-</ion-view>
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">ثبت نام</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closereg()">بستن</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form >
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">نام کاربری</span>
+                    <input type="text" ng-model="signupData.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">رمز عبور</span>
+                    <input type="password" ng-model="signupData.password">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">تکرار رمز عبور</span>
+                    <input type="password" ng-model="signupData.repassword">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">نام کامل</span>
+                    <input type="password" ng-model="signupData.repassword">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">کد ملی</span>
+                    <input type="password" ng-model="signupData.repassword">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">شماره تلفن همراه</span>
+                    <input type="password" ng-model="signupData.repassword">
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">ورود</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

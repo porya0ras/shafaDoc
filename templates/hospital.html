@@ -53,14 +53,12 @@
 
 
             </div>
-            <map data-tap-disabled="true"
-                 on-create="mapCreated(map,hospital.map.latitude0,hospital.map.latitude1)"></map>
-            <div class="item tabs tabs-secondary tabs-icon-left">
 
-                <a class="tab-item" href="#">
-                    <i class="icon ion-share"></i>
-                    Share
-                </a>
+            <a href="#/app/map/{{hospital.map.latitude0}}/{{hospital.map.latitude1}}">
+                <map data-tap-disabled="true" on-create="mapCreated(map,hospital.map.latitude0,hospital.map.latitude1)"></map>
+            </a>
+            <div class="item tabs tabs-secondary tabs-icon-left">
+نقشه
             </div>
 
         </div>

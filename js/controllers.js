@@ -288,7 +288,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var O=new Object();
             O.hid=$hid;
             O.docid=$hdocid;
-            console.log(O);
+            //console.log(O);
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=hospitaldocdatetime';
             $http({
                 method: 'POST',
@@ -298,8 +298,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }).then(function (response) {
 
                     if (response.data.HRM.StatusCode == 200) {
-                        $scope.hdocdatetime = response.data.Data.$values;
-                        console.log($scope.hdocdatetime);
+                        if(response.data.Data!=null) {
+                            $scope.hdocdatetime = response.data.Data.$values;
+                            console.log($scope.hdocdatetime);
+                        }
                     }
                     // success
                 },
@@ -434,8 +436,14 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         };
 
     })
-    .controller('LogIn', function ($scope, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading,$ionicHistory) {
+    .controller('LogIn', function ($scope, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading,$ionicHistory,$ionicModal) {
         $scope.Error = false;
+        $ionicModal.fromTemplateUrl('templates/signup.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal = modal;
+        });
+
         $scope.init=function()
         {
             var UserData=$localstorage.getObject('UserData');
@@ -505,9 +513,15 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }).then(function (response) {
 
                     if (response.data.HRM.StatusCode == 200) {
+
                         $scope.UserData=response.data.Data;
-                        $localstorage.setObject('UserData',$scope.UserData);
-                        $scope.$root.UserData=$scope.UserData;
+                        try {
+                            $localstorage.setObject('UserData', $scope.UserData);
+                            $scope.$root.UserData = $scope.UserData;
+                        }
+                        catch (err){
+
+                        }
                         $ionicLoading.hide();
                     }
                     // success
@@ -524,6 +538,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         };
         $scope.LoginClick=function($username)
         {
+            console.log($username);
             if($scope.$root.isLogin)
             {
                $scope.getUserData($username);
@@ -538,6 +553,15 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }
         };
         $scope.signup = false;
+        $scope.signupData={};
+        $scope.closereg=function()
+        {
+            $scope.modal.hide();
+        };
+        $scope.opensignup=function()
+        {
+            $scope.modal.show();
+        };
         $scope.Signup = function ($mobile, $fl, $password, $codemelli) {
             var O = new Object();
             O.username = $mobile;
@@ -724,6 +748,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
     .controller('Hospital', function ($scope, $http, $ionicPopup, $stateParams, $ionicLoading,$rootScope) {
         $scope.mapCreated = function (map, $l0, $l1) {
             $scope.map = map;
+            //console.log(map);
             $scope.centerOnLocation($l0, $l1);
         };
         $scope.centerOnLocation = function ($latitude, $longitude) {
@@ -780,8 +805,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }).then(function (response) {
 
                     if (response.data.HRM.StatusCode == 200) {
-                        $scope.hospitals = response.data.Data.$values;
-                        console.log(response.data.Data);
+                        if(response.data.Data!=null) {
+                            $scope.hospitals = response.data.Data.$values;
+                            console.log(response.data.Data);
+                        }
                         $ionicLoading.hide();
                     }
                     // success
@@ -809,7 +836,8 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hospital = response.data.Data;
-                        console.log($scope.hospital);
+                        //console.log($scope.hospital);
+                        $scope.centerOnLocation($scope.hospital.map.latitude0, $scope.hospital.map.latitude0);
                         $ionicLoading.hide();
                     }
                     // success
@@ -918,7 +946,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         $scope.centerOnLocation = function ($latitude, $longitude) {
             console.log("Centering");
             $scope.loading = $ionicLoading.show({
-                template: 'آماداه سازی نقشه ...'
+                template: '...آماداه سازی نقشه '
             });
             navigator.geolocation.getCurrentPosition(function (pos) {
                 console.log('Got pos', pos);
@@ -940,13 +968,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             $ionicLoading.hide();
             directionsDisplay.setMap($scope.map);
             console.log("Done");
-
         };
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
         $scope.calcRoute=function() {
             $ionicLoading.show({
-                template: 'مسیر دهی...'
+                template: '...مسیر دهی'
             });
             var end = $stateParams.l0+","+$stateParams.l1;
             var start = $scope.pos.lat + "," + $scope.pos.lng;

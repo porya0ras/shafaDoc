@@ -11,7 +11,7 @@
         </select>
     </label>
 
-    <div class=" bar bar-sub-header item-input-inset ltr">
+    <form class=" bar bar-sub-header item-input-inset ltr" ng-submit="getResult(selected)" >
         <!--label class="item item-input ">
             <input  type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3" placeholder=" بر اساس شهر یا نوع بیماری یا دکتر" ng-model="selected" >
         </label>
@@ -27,11 +27,11 @@
             <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3"
                    placeholder=" بر اساس  تخصص یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
         </label>
-        <button class="button button-clear button-positive" ng-click="getResult(selected)">
+        <button class="button button-clear button-positive" type="submit">
             جستجو
         </button>
 
-    </div>
+    </form>
 
     <ion-content class="browse-content">
 
@@ -103,40 +103,37 @@
         </div>
         <div class="sp ltr " ng-if="selected==''">
             <div class="row">
-                <div class="col bgsp1"><img src="img/Brain.png"><p> مغز و اعصاب</p></div>
-                <div class="col bgsp2"><img src="img/Dentist.png"><p>دندان پزشکی</p></div>
-                <div class="col bgsp3"><img src="img/Dermatologist.png"><p>پوست و مو</p></div>
-                <div class="col bgsp4"><img src="img/Digestive.png"><p>گوارش</p></div>
+                <div class="col bgsp1" ng-click="gotospe(8)"><img src="img/Brain.png"><p> مغز و اعصاب</p></div>
+                <div class="col bgsp2" ng-click="gotospe(7)"><img src="img/Dentist.png"><p>دندان پزشکی</p></div>
+                <div class="col bgsp3" ng-click="gotospe(6)"><img src="img/Dermatologist.png"><p>پوست و مو</p></div>
+                <div class="col bgsp4" ng-click="gotospe(5)"><img src="img/Digestive.png"><p>گوارش</p></div>
             </div>
             <div class="row">
-                <div class="col"><img src="img/ENT.png"><p>گوش،حلق،بینی</p></div>
-                <div class="col"><img src="img/Eye.png"><p>چشم پزشکی</p></div>
-                <div class="col"><img src="img/General.png"><p>پزشک عمومی</p></div>
-                <div class="col"><img src="img/Gynecologist.png"><p>زنان و زایمان</p></div>
+                <div class="col" ng-click="gotospe(12)"><img src="img/ENT.png"><p>گوش،حلق،بینی</p></div>
+                <div class="col" ng-click="gotospe(11)"><img src="img/Eye.png"><p>چشم پزشکی</p></div>
+                <div class="col" ng-click="gotospe(10)"><img src="img/General.png"><p>پزشک عمومی</p></div>
+                <div class="col" ng-click="gotospe(9)"><img src="img/Gynecologist.png"><p>زنان و زایمان</p></div>
 
             </div>
             <div class="row">
-                <div class="col"><img src="img/Hear.png"><p>قلب</p></div>
-                <div class="col"><img src="img/Infection.png"><p>بیماریهای عفونی</p></div>
-                <div class="col"><img src="img/Inner.png"><p>داخلی</p></div>
-                <div class="col"><img src="img/Kidney.png"><p>کلیه و مجاری ادراری</p></div>
+                <div class="col" ng-click="gotospe(16)"><img src="img/Hear.png"><p>قلب</p></div>
+                <div class="col" ng-click="gotospe(15)"><img src="img/Infection.png"><p>بیماریهای عفونی</p></div>
+                <div class="col" ng-click="gotospe(14)"><img src="img/Inner.png"><p>داخلی</p></div>
+                <div class="col" ng-click="gotospe(13)"><img src="img/Kidney.png"><p>کلیه و مجاری ادراری</p></div>
 
             </div>
             <div class="row">
-                <div class="col"><img src="img/Lung.png"><p>بیماریهای تنفسی</p></div>
-                <div class="col"><img src="img/Nutrition.png"><p>تغذیه</p></div>
-                <div class="col"><img src="img/Orthopaedics.png"><p>ارتوپدی</p></div>
-                <div class="col"><img src="img/Pediatrician.png"><p>کودکان</p></div>
+                <div class="col" ng-click="gotospe(20)"><img src="img/Lung.png"><p>بیماریهای تنفسی</p></div>
+                <div class="col" ng-click="gotospe(19)"><img src="img/Nutrition.png"><p>تغذیه</p></div>
+                <div class="col" ng-click="gotospe(18)"><img src="img/Orthopaedics.png"><p>ارتوپدی</p></div>
+                <div class="col" ng-click="gotospe(17)"><img src="img/Pediatrician.png"><p>کودکان</p></div>
             </div>
             <div class="row">
                 <div class="col "></div>
-                <div class="col "><img src="img/Psychology.png"><p>روانپزشکی و مشاوره</p></div>
-                <div class="col"><img src="img/Surgery.png"><p>جراحی عمومی</p></div>
+                <div class="col " ng-click="gotospe(22)"><img src="img/Psychology.png"><p>روانپزشکی و مشاوره</p></div>
+                <div class="col" ng-click="gotospe(21)"><img src="img/Surgery.png"><p>جراحی عمومی</p></div>
                 <div class="col "></div>
             </div>
-            <button class="rtl button button-clear button-positive button-full">
-                موارد بیشتر...
-            </button>
         </div>
 
     </ion-content>
