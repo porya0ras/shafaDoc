@@ -94,7 +94,7 @@
             <div class="item item-divider" ng-if="speciality.length>0" >
                 تخصص ها
             </div>
-            <a class="item " ng-repeat="row in speciality" href="#">
+            <a class="item " ng-repeat="row in speciality" ng-click="gotospe(row.sp)">
                 <h2>{{row.speciality1}}</h2>
             </a>
             <div class="item item-divider" ng-if="Isnull && speciality.length==0 && hdoctors.length==0 && hospitals.length==0 && doctors.length==0"  >

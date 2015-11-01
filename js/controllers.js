@@ -96,6 +96,34 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     });
                 });
         };
+        $scope.getDoctors2 = function ($id) {
+            $ionicLoading.show();
+            var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=doctors2';
+            $http({
+                method: 'POST',
+                url: '/api/Docs',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        if(response.data.Data!=null) {
+                            $scope.doctors = response.data.Data.$values;
+                        }
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        };
         $scope.docprofile = {};
         $scope.getDocProFile = function ($id) {
             $ionicLoading.show();
@@ -215,9 +243,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 });
         };
         $scope.initDoctors = function () {
-            console.log('location data:' + location0.city);
-            $scope.getDoctors(location0.city, location0.ostan);
-            console.log($scope.doctors.length);
+            //console.log('location data:' + location0.city);
+            $scope.getDoctors2($rootScope.spe);
+            //console.log($scope.doctors.length);
         };
         $scope.httpsite = httpsite;
         $scope.hdocdatetime=[];
@@ -534,7 +562,11 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 });
         };
     })
-    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService,userService) {
+    .controller('special', function ($scope, $http, $ionicPopup, $localstorage,$stateParams,$state,$rootScope){
+        $rootScope.spe=$stateParams.name;
+
+    })
+    .controller('Search', function ($scope, $http, $ionicPopup, $localstorage,$rootScope,$ionicLoading,ApiService,userService,$state) {
 
         $scope.Rsearch = {};
         $scope.city='';
@@ -649,6 +681,11 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 $scope.searchs = $scope.Data.search;
             }
         };
+        $scope.gotospe=function($spe)
+        {
+            $rootScope.spe=$spe;
+            $state.go('app.specialResult');
+        }
     })
     .controller('Hospital', function ($scope, $http, $ionicPopup, $stateParams, $ionicLoading,$rootScope) {
         $scope.mapCreated = function (map, $l0, $l1) {
@@ -684,6 +721,33 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hospitals = response.data.Data;
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        };
+        $scope.getHospitals2= function ($id) {
+            $ionicLoading.show();
+            var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hospitals2';
+            $http({
+                method: 'POST',
+                url: '/api/Hospital',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        $scope.hospitals = response.data.Data.$values;
+                        console.log(response.data.Data);
                         $ionicLoading.hide();
                     }
                     // success
@@ -752,8 +816,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 });
         };
         $scope.initHospitals = function () {
-            console.log('location data:' + location0.city);
-            $scope.getHospitals(location0.city, location0.ostan);
+            //console.log('location data:' + location0.city);
+            //console.log($rootScope.spe);
+            $scope.getHospitals2($rootScope.spe);
+
             console.log($scope.hospitals.length);
         };
         $scope.httpsite = httpsite;

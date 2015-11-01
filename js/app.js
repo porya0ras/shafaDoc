@@ -66,7 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic.utils', 'ngCor
                 }
             })
             .state('app.specialResult', {
-                url: "/cityresult",
+                url: "/specialResult",
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/specialResult.html'
