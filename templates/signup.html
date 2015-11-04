@@ -1,13 +1,17 @@
 <ion-modal-view>
     <ion-header-bar>
+        <div class="buttons">
+            <button class="button button-clear" ng-hide="signupData.show" ng-click="signupData.show=true"><i class="ionicons ion-chevron-left"></i></button>
+        </div>
         <h1 class="title">ثبت نام</h1>
+
         <div class="buttons">
             <button class="button button-clear" ng-click="closereg()">بستن</button>
         </div>
     </ion-header-bar>
     <ion-content>
-        <form >
-            <div class="list">
+        <form ng-submit="mobileValidation()" ng-init="signupData.show=true">
+            <div class="list rtl" ng-show="signupData.show">
                 <label class="item item-input">
                     <span class="input-label">نام کاربری</span>
                     <input type="text" ng-model="signupData.username">
@@ -22,20 +26,32 @@
                 </label>
                 <label class="item item-input">
                     <span class="input-label">نام کامل</span>
-                    <input type="password" ng-model="signupData.repassword">
+                    <input type="text" ng-model="signupData.fl">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">کد ملی</span>
-                    <input type="password" ng-model="signupData.repassword">
+                    <input type="text" ng-model="signupData.codemeli">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">شماره تلفن همراه</span>
-                    <input type="password" ng-model="signupData.repassword">
+                    <input type="text" ng-model="signupData.mobile">
                 </label>
-                <label class="item">
-                    <button class="button button-block button-positive" type="submit">ورود</button>
-                </label>
+                    <button class="button button-block button-positive" type="submit">ثبت نام !</button>
+
             </div>
         </form>
+        <form ng-submit="Signup()">
+            <div class="list rtl" ng-hide="signupData.show">
+                <h4>لطفا منتظر دریافت کد تایید باشید </h4>
+                <label class="item rtl-item-input item-input item-stacked-label">
+                    <span class="input-label">کد تایید شماره موبایل</span>
+                    <input type="text" ng-model="signupData.token" placeholder="PF8AR">
+                </label>
+                    <button class="button button-block button-positive" type="submit" >تایید</button>
+                    <button class="button button-block button-energized " type="reset" ng-click="mobileValidation()" ><i class="ionicons ion-loop"></i> ارسال مجدد</button>
+            </div>
+        </form>
+
+
     </ion-content>
 </ion-modal-view>

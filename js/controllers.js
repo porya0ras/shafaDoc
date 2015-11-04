@@ -562,12 +562,43 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         {
             $scope.modal.show();
         };
-        $scope.Signup = function ($mobile, $fl, $password, $codemelli) {
+        $scope.mobileValidation=function()
+        {
+            $ionicLoading.show();
+            var xsrf = 'Pass=' + Pass + '&Data=' + $scope.signupData.mobile + '&Func=smsvalid';
+            $http({
+                method: 'POST',
+                url: '/api/Login',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        //$scope.value = response.data.Data;
+                        console.log(response.data.Data);
+                        $scope.signupData.show=false;
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: '! ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        };
+        $scope.Signup = function () {
             var O = new Object();
-            O.username = $mobile;
-            O.password = $password;
-            O.fl = $fl;
-            O.codemelli = $codemelli;
+            O.username = $scope.signupData.username;
+            O.password = $scope.signupData.password;
+            O.fl = $scope.signupData.fl;
+            O.codemelli = $scope.signupData.codemeli;
+            O.token=$scope.signupData.token;
+            O.mobile=$scope.signupData.mobile;
             //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=signup';
             $http({
@@ -579,6 +610,25 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.result = response.data.Data;
+                        if( $scope.result==true)
+                        {
+                            $ionicPopup.alert({
+                                title: 'اطلاع',
+                                content: '!ثبت نام با موفقیت انجام شد '
+                            }).then(function (res) {
+                                console.log('signup Done');
+                                $scope.closereg();
+
+                            });
+                        }
+                        else{
+                            $ionicPopup.alert({
+                                title: 'هشدار',
+                                content: 'اشکال در وارد کردن اطلاعات.! ثبت نام صورت نگرفت '
+                            }).then(function (res) {
+                                console.log('signup failed');
+                            });
+                        }
                     }
                     // success
                 },
