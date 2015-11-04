@@ -10,29 +10,22 @@
                 <span class="font-size-12">فارغ التخصیل از : {{hdocprofile.el}}</span>
                 <p>مسلط به زبان های : {{hdocprofile.Languages_Spoken}}</p>
             </div>
-
-
-
         </div>
-
         <div >
         <div class="input-label col">
         انتخاب زمان ملاقات
         </div>
-        <select class="form-control">
+        <select class="form-control" ng-model="dateid">
             <optgroup ng-repeat="row in hdocdatetime" label=" {{row.time}} | ظرفیت باقیمانده : {{row.pnum-row.count}}">
-            <option>{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}}</option>
+            <option value="{{row.dateid}}">{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}}</option>
             </optgroup>
         </select>
             <br>
-
         <label class="has-warning" ng-show="!$root.isLogin">لطفا برای رزور کردن وارد حساب کاربری خود شوید!</label>
-        <button class="button button-full button-positive" ng-show="$root.isLogin"><i class="fa fa-check"></i>
+        <button class="button button-full button-positive" ng-show="$root.isLogin" ng-click="hdreservation()">
             رزرو کردن
-        </button>
+            <i class="fa fa-check"></i></button>
 </div>
             <br />
-
-
     </ion-content>
 </ion-view>

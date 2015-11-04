@@ -52,6 +52,60 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             $scope.map = map;
             $scope.centerOnLocation($l0, $l1);
         };
+        $scope.hdreservation=function()
+        {
+            $ionicLoading.show();
+            var o = new Object();
+            o.docid = $stateParams.hid;
+            o.dhid = $stateParams.hdocid;
+            o.dateid=$scope.dateid;
+            o.user=String($scope.$root.UserData.idU);
+            var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(o) + '&Func=hdocreservation';
+            $http({
+                method: 'POST',
+                url: '/api/Docs',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        var return0 = response.data.Data;
+                        console.log(return0);
+                        if(return0.ret==true)
+                        {
+                            $ionicPopup.alert({
+                                title: 'اطلاع',
+                                content: 'این زمان برای شما رزرو گردید '+'\nشناسه ثبت : '+return0.happo.hid
+                            }).then(function (res) {
+                                console.log('reserve don');
+                            });
+                        }
+                        else{
+                            $ionicPopup.alert({
+                                title: 'Failed',
+                                content: 'مشکلی پیش آمده است ، لطفا بعدا تلاش فرمایید .'
+                            }).then(function (res) {
+                                console.log('Failed Connection!');
+                            });
+                        }
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+
+
+
+
+        };
         var directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.centerOnLocation = function ($latitude, $longitude) {
             console.log("Centering");
@@ -480,7 +534,6 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
-
                     if (response.data.HRM.StatusCode == 200) {
                         if(response.data.Data===true)
                         {
