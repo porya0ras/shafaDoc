@@ -415,7 +415,38 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
 
     })
-    .controller('Ostans', function ($scope, $http, $timeout, $q, $ionicPopup, $state,$stateParams,$ionicLoading,$rootScope) {
+    .controller('Resbox', function ($scope, $http, $timeout, $q, $ionicPopup, $state,$stateParams,$ionicLoading,$rootScope){
+        $scope.init=function()
+        {
+            $ionicLoading.show();
+            var xsrf = 'Pass=' + Pass + '&Data=' + $scope.$root.UserData.idU + '&Func=getress';
+            $http({
+                method: 'POST',
+                url: '/api/Docs',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+                    if (response.data.HRM.StatusCode == 200) {
+                        if(response.data.Data!=null)
+                        {
+
+                        }
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // failed
+                    $ionicPopup.alert({
+                        title: 'Failed',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('Failed Connection!');
+                    });
+                });
+        }
+    })
+        .controller('Ostans', function ($scope, $http, $timeout, $q, $ionicPopup, $state,$stateParams,$ionicLoading,$rootScope) {
         $scope.ostans = [];
         $scope.cities = [];
         $ionicLoading.show({
