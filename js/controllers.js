@@ -416,6 +416,8 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
     })
     .controller('Resbox', function ($scope, $http, $timeout, $q, $ionicPopup, $state,$stateParams,$ionicLoading,$rootScope){
+        $scope.appo=[];
+        $scope.happo=[];
         $scope.init=function()
         {
             $ionicLoading.show();
@@ -429,7 +431,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         if(response.data.Data!=null)
                         {
-
+                            $scope.appo=response.data.Data.appo.$values;
+                            console.log(response.data.Data.happo.$values);
+                            $scope.happo=response.data.Data.happo.$values;
                         }
                         $ionicLoading.hide();
                     }

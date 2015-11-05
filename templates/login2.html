@@ -4,7 +4,7 @@
     <img  id="logoconsis" ng-src="img/Logo.png" width="100%"
     height="100%"/>
 </div>
-
+<form ng-submit="Login(username,password,'client')">
       <div class="list list-inset ">
         <label class="item item-input " >
           <i class="fa fa-user padding-right-20"></i>
@@ -18,9 +18,9 @@
         </label>
 
 </div>
-<button class="button-full button button-positive" ng-click="Login(username,password,'client');">
+<button class="button-full button button-positive" type="submit">
   ورود
-</button>
+</button></form>
 
       </ion-content>
       <div class="bar bar-footer footerlogin ltr">

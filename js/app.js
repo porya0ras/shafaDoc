@@ -138,6 +138,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic.utils', 'ngCor
                     }
                 }
             })
+            .state('app.resbox', {
+                url: '/resbox',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/resbox.html'
+                    }
+                }
+            })
             .state('app.hdoctorprof', {
                 url: '/hdoctorprof/:hid/:hdocid',
                 views: {
