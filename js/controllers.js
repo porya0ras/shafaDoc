@@ -1,7 +1,8 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
-
+//var apiAdd="http://drugs.fractalteam.ir";
+var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
 
@@ -48,10 +49,10 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
     })
     .controller('Docs', function ($scope, $http, $ionicPopup, $state, $cordovaGeolocation, $ionicLoading, $stateParams,$rootScope) {
         $scope.stateParams=$stateParams;
-        $scope.mapCreated = function (map, $l0, $l1) {
-            $scope.map = map;
-            $scope.centerOnLocation($l0, $l1);
-        };
+        //$scope.mapCreated = function (map, $l0, $l1) {
+        //    $scope.map = map;
+        //    $scope.centerOnLocation($l0, $l1);
+        //};
         $scope.hdreservation=function()
         {
             $ionicLoading.show();
@@ -63,7 +64,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(o) + '&Func=hdocreservation';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -78,14 +79,15 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                                 content: 'این زمان برای شما رزرو گردید '+'\nشناسه ثبت : '+return0.happo.hid
                             }).then(function (res) {
                                 console.log('reserve don');
+                                $scope.getHospitalDocDateTime($stateParams.hid,$stateParams.hdocid);
                             });
                         }
                         else{
                             $ionicPopup.alert({
-                                title: 'Failed',
+                                title: 'اخطار',
                                 content: 'مشکلی پیش آمده است ، لطفا بعدا تلاش فرمایید .'
                             }).then(function (res) {
-                                console.log('Failed Connection!');
+                                console.log('اخطار Connection!');
                             });
                         }
                         $ionicLoading.hide();
@@ -93,12 +95,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
 
@@ -106,20 +108,20 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
 
         };
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        $scope.centerOnLocation = function ($latitude, $longitude) {
-            console.log("Centering");
-            $scope.map.setCenter(new google.maps.LatLng($latitude, $longitude));
-            var site = new google.maps.LatLng($latitude,$longitude);
-            var marker = new google.maps.Marker({
-                position: site,
-                map: $scope.map
-            });
-            marker.setIcon('img/marker.png');
-            directionsDisplay.setMap($scope.map);
-            console.log("Done");
-
-        };
+        //var directionsDisplay = new google.maps.DirectionsRenderer();
+        //$scope.centerOnLocation = function ($latitude, $longitude) {
+        //    console.log("Centering");
+        //    $scope.map.setCenter(new google.maps.LatLng($latitude, $longitude));
+        //    var site = new google.maps.LatLng($latitude,$longitude);
+        //    var marker = new google.maps.Marker({
+        //        position: site,
+        //        map: $scope.map
+        //    });
+        //    marker.setIcon('img/Dicon.png');
+        //    directionsDisplay.setMap($scope.map);
+        //    console.log("Done");
+        //
+        //};
         $scope.doctors = [];
         $scope.getDoctors = function ($city, $ostan) {
             $ionicLoading.show();
@@ -129,7 +131,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(o) + '&Func=doctors';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -141,12 +143,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -156,7 +158,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hdoctors';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -170,12 +172,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -184,7 +186,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=doctors2';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -198,12 +200,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -213,7 +215,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=docprofile';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -221,18 +223,18 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.docprofile = response.data.Data;
 
-                        $scope.mapCreated($scope.map,$scope.docprofile.map.latitude0,$scope.docprofile.map.latitude1);
-                        $ionicLoading.hide();
+                        //$scope.mapCreated($scope.map,$scope.docprofile.map.latitude0,$scope.docprofile.map.latitude1);
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -246,7 +248,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hdocprofile';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -259,12 +261,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -278,7 +280,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=docdatetime';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -290,12 +292,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -305,7 +307,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=address';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -316,12 +318,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -346,7 +348,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=hospitaldocdatetime';
             $http({
                 method: 'POST',
-                url: '/api/Hospital',
+                url: apiAdd+'/api/Hospital',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -360,12 +362,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -424,7 +426,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $scope.$root.UserData.idU + '&Func=getress';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -440,12 +442,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         }
@@ -460,7 +462,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         var xsrf = 'Pass=' + Pass + '&Func=ostans';
         $http({
             method: 'POST',
-            url: '/api/Location',
+            url: apiAdd+'/api/Location',
             data: xsrf,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (response) {
@@ -473,12 +475,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 // success
             },
             function (response) { // optional
-                // failed
+                // اخطار
                 $ionicPopup.alert({
-                    title: 'Failed',
+                    title: 'اخطار',
                     content: ' ارتباط با سرور برقرار نیست'
                 }).then(function (res) {
-                    console.log('Failed Connection!');
+                    console.log('اخطار Connection!');
                 });
             });
         $scope.getCities = function ($id) {
@@ -488,7 +490,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Data=' + $id + '&Pass=' + Pass + '&Func=citys';
             $http({
                 method: 'POST',
-                url: '/api/Location',
+                url: apiAdd+'/api/Location',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -500,12 +502,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -532,7 +534,18 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         }).then(function (modal) {
             $scope.modal = modal;
         });
+        $scope.valDig=function ($obj) {
+            if($obj==undefined) {
+            return false;
+            }
+                for (n = 0; n < $obj.length; n++)
+                    if (isNaN($obj.charAt(n))) {
+                        console.log("not digit");
+                        return false;
+                    }
+                return true;
 
+        };
         $scope.init=function()
         {
             var UserData=$localstorage.getObject('UserData');
@@ -565,7 +578,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=signin';
             $http({
                 method: 'POST',
-                url: '/api/Login',
+                url: apiAdd+'/api/Login',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -573,19 +586,28 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         if(response.data.Data===true)
                         {
                             $scope.$root.isLogin=true;
-                            $ionicLoading.hide();
                             $scope.LoginClick($username);
                         }
+                        else{
+                            $ionicPopup.alert({
+                                title: 'اخطار',
+                                content: 'نام کاربری و یا رمز عبور اشتباه می باشد '
+                            }).then(function (res) {
+                                console.log('اخطار Login!');
+                            });
+                        }
                     }
+
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -595,7 +617,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $username + '&Func=getuserdata';
             $http({
                 method: 'POST',
-                url: '/api/Login',
+                url: apiAdd+'/api/Login',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -615,12 +637,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -656,7 +678,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $scope.signupData.mobile + '&Func=smsvalid';
             $http({
                 method: 'POST',
-                url: '/api/Login',
+                url: apiAdd+'/api/Login',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -670,12 +692,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: '! ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -691,7 +713,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=signup';
             $http({
                 method: 'POST',
-                url: '/api/Login',
+                url: apiAdd+'/api/Login',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -714,19 +736,19 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                                 title: 'هشدار',
                                 content: 'اشکال در وارد کردن اطلاعات.! ثبت نام صورت نگرفت '
                             }).then(function (res) {
-                                console.log('signup failed');
+                                console.log('signup اخطار');
                             });
                         }
                     }
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -737,7 +759,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $key + '&Func=get';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -748,12 +770,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: '! ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -797,7 +819,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(sendSearch) + '&Func=search';
             $http({
                 method: 'POST',
-                url: '/api/Search',
+                url: apiAdd+'/api/Search',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -816,12 +838,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -843,7 +865,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Func=allcitys';
             $http({
                 method: 'POST',
-                url: '/api/Location',
+                url: apiAdd+'/api/Location',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -856,12 +878,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -884,24 +906,27 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         }
     })
     .controller('Hospital', function ($scope, $http, $ionicPopup, $stateParams, $ionicLoading,$rootScope) {
-        $scope.mapCreated = function (map, $l0, $l1) {
-            $scope.map = map;
-            //console.log(map);
-            $scope.centerOnLocation($l0, $l1);
-        };
-        $scope.centerOnLocation = function ($latitude, $longitude) {
-            console.log("Centering");
+        //$scope.mapCreated = function (map, $l0, $l1) {
+        //    $scope.map = map;
+        //    //console.log(map);
+        //    //$scope.centerOnLocation($l0, $l1);
+        //};
 
-            $scope.loading = $ionicLoading.show({
-                content: 'آماداه سازی نقشه ...',
-                showBackdrop: false
-            });
-            $scope.map.setCenter(new google.maps.LatLng($latitude, $longitude));
-            $ionicLoading.hide();
-            console.log("Done");
-
-        };
-
+        //$scope.centerOnLocation = function ($latitude, $longitude) {
+        //    console.log("Centering");
+        //    $scope.map.setCenter(new google.maps.LatLng($latitude, $longitude));
+        //    var site = new google.maps.LatLng($latitude,$longitude);
+        //    var marker = new google.maps.Marker({
+        //        position: site,
+        //        map: $scope.map
+        //    });
+        //    console.log($latitude,$longitude);
+        //    marker.setIcon('img/hicon.png');
+        //    directionsDisplay.setMap($scope.map);
+        //    console.log("Done")
+        //
+        //};
+        //var directionsDisplay = new google.maps.DirectionsRenderer();
         $scope.hospitals = [];
         $scope.getHospitals = function ($city, $ostan) {
             $ionicLoading.show();
@@ -911,7 +936,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(o) + '&Func=hospitals';
             $http({
                 method: 'POST',
-                url: '/api/Hospital',
+                url: apiAdd+'/api/Hospital',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -923,12 +948,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -937,7 +962,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hospitals2';
             $http({
                 method: 'POST',
-                url: '/api/Hospital',
+                url: apiAdd+'/api/Hospital',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -952,12 +977,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -967,7 +992,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hospital';
             $http({
                 method: 'POST',
-                url: '/api/Hospital',
+                url: apiAdd+'/api/Hospital',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -975,18 +1000,18 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hospital = response.data.Data;
                         //console.log($scope.hospital);
-                        $scope.centerOnLocation($scope.hospital.map.latitude0, $scope.hospital.map.latitude0);
+                        //$scope.centerOnLocation($scope.hospital.map.latitude0, $scope.hospital.map.latitude1);
                         $ionicLoading.hide();
                     }
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPupup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -995,7 +1020,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hospitalalldatetime';
             $http({
                 method: 'POST',
-                url: '/api/Hospital',
+                url: apiAdd+'/api/Hospital',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -1006,12 +1031,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPupup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -1033,7 +1058,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var xsrf = 'Pass=' + Pass + '&Data=' + $id + '&Func=hospitaldoctors';
             $http({
                 method: 'POST',
-                url: '/api/Docs',
+                url: apiAdd+'/api/Docs',
                 data: xsrf,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (response) {
@@ -1045,12 +1070,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // success
                 },
                 function (response) { // optional
-                    // failed
+                    // اخطار
                     $ionicPopup.alert({
-                        title: 'Failed',
+                        title: 'اخطار',
                         content: ' ارتباط با سرور برقرار نیست'
                     }).then(function (res) {
-                        console.log('Failed Connection!');
+                        console.log('اخطار Connection!');
                     });
                 });
         };
@@ -1103,6 +1128,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 map: $scope.map,
                 title: 'مطب'
             });
+            marker.setIcon('img/hicon.png');
             $ionicLoading.hide();
             directionsDisplay.setMap($scope.map);
             console.log("Done");
@@ -1162,7 +1188,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 var xsrf = 'Data=' + $id + '&Pass=' + Pass + '&Func=allcitys';
                 var request= $http({
                     method: 'POST',
-                    url: '/api/Location',
+                    url: apiAdd+'/api/Location',
                     data: xsrf,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 });
@@ -1177,13 +1203,13 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         // success
                     },
                     function (response) { // optional
-                        // failed
+                        // اخطار
 
                         $ionicPopup.alert({
                             title: 'اخطار',
                             content: ' ارتباط با سرور برقرار نیست'
                         }).then(function (res) {
-                            console.log('Failed Connection!');
+                            console.log('اخطار Connection!');
                         });
                     });*/
             };
@@ -1219,7 +1245,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 var xsrf ='&Pass=' + Pass + '&Func=allcitys';
                 $http({
                     method: 'POST',
-                    url: '/api/Location',
+                    url: apiAdd+'/api/Location',
                     data: xsrf,
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function (response) {
@@ -1234,7 +1260,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         // success
                     },
                     function (response) { // optional
-                        // failed
+                        // اخطار
                         console.log("ERR!");
                         return null;
                     });

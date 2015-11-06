@@ -1,19 +1,21 @@
 <ion-view view-title="لیست رزرو ها">
     <ion-content ng-controller="Resbox" ng-init="init()">
         <ion-list>
-            <ion-item ng-repeat="row in appo" href="#" class=" ion-ios-pulse-strong">
-                <p>کد ثبت :{{row.id}}</p>
-                <p>نام دکتر:{{row.fl}}</p>
-                <p>زمان رزرو:{{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</p>
+            <ion-item ng-repeat="row in appo | orderBy:'id'" href="#"  >
+                <i class="icon ion-ios-pulse-strong"></i>
+                <p>کد ثبت : <a class="assertive">{{row.id}}</a></p>
+                <p>نام دکتر: <a class="assertive">{{row.fl}}</a></p>
+                <p>زمان رزرو: <a class="positive">{{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</a></p>
 
             </ion-item>
         </ion-list>
         <hr>
         <ion-list>
-            <ion-item ng-repeat="row in happo" href="#" class="ion-ios-pulse-strong">
-                <p>کد ثبت :{{row.hid}}</p>
-                <p>نام دکتر:{{row.fl}}</p>
-                <p>زمان رزرو:{{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</p>
+            <ion-item ng-repeat="row in happo | orderBy:'hid'" href="#">
+                <i class="icon ion-ios-pulse-strong"></i>
+                <p>کد ثبت : <a class="assertive">{{row.hid}}</a></p>
+                <p>نام دکتر: <a class="assertive">{{row.fl}}</a></p>
+                <p>زمان رزرو: <a class="positive">{{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</a></p>
             </ion-item>
         </ion-list>
         <ion-list>

@@ -13,29 +13,30 @@
             <div class="list rtl" ng-show="signupData.show">
                 <label class="item item-input">
                     <span class="input-label">نام کاربری</span>
-                    <input type="text" ng-model="signupData.username">
+                    <input type="text" ng-model="signupData.username" required="">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">رمز عبور</span>
-                    <input type="password" ng-model="signupData.password">
+                    <span class="input-label" >رمز عبور</span>
+                    <input type="password" ng-class="{'has-error': signupData.password!='' && signupData.password!=signupData.repassword }" ng-model="signupData.password" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">تکرار رمز عبور</span>
-                    <input type="password" ng-model="signupData.repassword">
+                    <input type="password" ng-class="{'has-error': signupData.repassword!='' && signupData.password!=signupData.repassword }" ng-model="signupData.repassword" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">نام کامل</span>
-                    <input type="text" ng-model="signupData.fl">
+                    <input type="text" ng-model="signupData.fl" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">کد ملی</span>
-                    <input type="text" ng-model="signupData.codemeli">
+                    <input type="text" ng-class="{'has-error': signupData.codemeli.length!=0 && signupData.codemeli.length!=10 || signupData.codemeli.length!=0 && !valDig(signupData.codemeli) }" ng-model="signupData.codemeli" required>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">شماره تلفن همراه</span>
-                    <input type="text" ng-model="signupData.mobile">
+                    <input type="text" ng-class="{'has-error': signupData.mobile.length!=0 && signupData.mobile.length !=11 || signupData.mobile.length!=0 && !valDig(signupData.mobile) }" ng-model="signupData.mobile" required>
                 </label>
-                    <button class="button button-block button-positive" type="submit">ثبت نام !</button>
+                    <button ng-disabled="signupData.fl.length==0 || signupData.username.length==0 || signupData.username.$dirty && signupData.username.$invalid || signupData.password!=signupData.repassword || signupData.password.length==0 || signupData.fl.$dirty && signupData.fl.$invalid || !valDig(signupData.codemeli) || signupData.codemeli.length!=10 || signupData.mobile.length!=11 || !valDig(signupData.mobile)"
+                            class="button button-block button-positive" type="submit">ثبت نام !</button>
 
             </div>
         </form>

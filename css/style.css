@@ -200,6 +200,7 @@ color: #1D1313;
 }
 .dropdown-menu {
     top :60px !important;
+    position: absolute !important;
 }
 #textleft
 {
@@ -237,4 +238,59 @@ color: #1D1313;
 }
 .popup-body{
     direction: rtl;
+}
+[class^="micon-"], [class*=" micon-"] {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.micon-hos:before {
+    content: "\e900";
+}
+.micon-doc:before {
+    content: "\e901";
+}
+
+.has-error ,label .ng-invalid{
+    border: 1px solid rgb(255,96,96) !important;
+    border-radius: 3px !important;
+    box-shadow: 0px 1px 1px rgba(255, 96, 96, 0.075) inset !important;
+    /*-moz-box-shadow:    1px 1px 1px 1px rgb(255,96,96);*/
+    /*-webkit-box-shadow: 1px 1px 1px 1px rgb(255,96,96);*/
+    /*box-shadow:         1px 1px 1px 1px rgb(255,96,96);*/
+
+}
+#about-page{
+    background-image: url("../img/about-bg.jpg");
+    background-size: cover;
+}
+.about-body{
+    width: 80%;
+    height: 80%;
+    padding: 10%;
+    margin: 10%;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.8);
+    border-bottom: 2px solid #a7a7a7;
+    border-right: 1px solid gray;
+}
+.about-body .logo{
+    background: url("../img/path79.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    position: inherit;
+    height: 125px;
+    width: 100px;
+
 }

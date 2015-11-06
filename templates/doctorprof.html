@@ -58,9 +58,12 @@
   </a>
 </div>
     </p>
-      <a href="#/app/map/{{docprofile.map.latitude0}}/{{docprofile.map.latitude1}}">
-      <map data-tap-disabled="true" on-create="mapCreated(map,docprofile.map.latitude0,docprofile.map.latitude1)"></map>
-          </a>
+      <!--<a href="#/app/map/{{docprofile.map.latitude0}}/{{docprofile.map.latitude1}}">-->
+      <!--<map data-tap-disabled="true" on-create="mapCreated(map,docprofile.map.latitude0,docprofile.map.latitude1)"></map>-->
+          <!--</a>-->
+      <a class="item tabs tabs-secondary tabs-icon-left" href="#/app/map/{{docprofile.map.latitude0}}/{{docprofile.map.latitude1}}">
+          مسیر دهی از روی نقشه
+      </a>
   </div>
     <label class="has-warning" ng-show="!$root.isLogin">لطفا برای رزور کردن وارد حساب کاربری خود شوید!</label>
   <div class="positive item tabs tabs-secondary tabs-icon-left" ng-show="$root.isLogin" >
