@@ -1,8 +1,8 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
-var apiAdd="http://drugs.fractalteam.ir";
-//var apiAdd="";
+//var apiAdd="http://drugs.fractalteam.ir";
+var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
 

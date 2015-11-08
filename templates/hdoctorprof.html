@@ -11,13 +11,14 @@
                 <p>مسلط به زبان های : {{hdocprofile.Languages_Spoken}}</p>
             </div>
         </div>
-        <div >
+        <div>
         <div class="input-label col">
         انتخاب زمان ملاقات
         </div>
         <select class="form-control" ng-model="dateid">
-            <optgroup ng-repeat="row in hdocdatetime" label=" {{row.time}} | ظرفیت باقیمانده : {{row.pnum-row.count}}">
-            <option value="{{row.dateid}}">{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}}</option>
+            <optgroup ng-repeat="row in hdocdatetime" label=" ظرفیت باقیمانده : {{row.pnum-row.count}}">
+            <option value="{{row.dateid}}">{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</option>
+                <hr>
             </optgroup>
         </select>
             <br>

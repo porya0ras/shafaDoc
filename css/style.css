@@ -22,6 +22,14 @@
 }
 .search{
     margin-top: 4px !important;
+
+}
+.search input{
+    height: 35px !important;
+
+}
+.search + .search input:focus {
+    border: 1px solid #444;
 }
 .select-city
 {
@@ -189,6 +197,8 @@ padding: 20px;
 background-color: #51697D;
 border-color: black;
 color: #1D1313;
+    padding-left: 15%;
+    padding-right: 15%;
 }
 .loginbox
 {
@@ -232,6 +242,7 @@ color: #1D1313;
 .result-count-search{
     font-size: 10px;
     color: gray;
+    text-align: center;
 }
 .rtl-item-input{
     padding:6px 16px 5px 0px;
@@ -292,5 +303,15 @@ color: #1D1313;
     position: inherit;
     height: 125px;
     width: 100px;
+
+}
+.bar.bar-stable .title {
+    color: #2C2C2C !important;
+}
+.input-label{
+    font-weight: initial;
+    padding-left: 10px;
+    text-align: left;
+
 
 }

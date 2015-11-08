@@ -32,7 +32,7 @@
                     <input type="text" ng-class="{'has-error': signupData.codemeli.length!=0 && signupData.codemeli.length!=10 || signupData.codemeli.length!=0 && !valDig(signupData.codemeli) }" ng-model="signupData.codemeli" required>
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">شماره تلفن همراه</span>
+                    <span class="input-label">شماره همراه</span>
                     <input type="text" ng-class="{'has-error': signupData.mobile.length!=0 && signupData.mobile.length !=11 || signupData.mobile.length!=0 && !valDig(signupData.mobile) }" ng-model="signupData.mobile" required>
                 </label>
                     <button ng-disabled="signupData.fl.length==0 || signupData.username.length==0 || signupData.username.$dirty && signupData.username.$invalid || signupData.password!=signupData.repassword || signupData.password.length==0 || signupData.fl.$dirty && signupData.fl.$invalid || !valDig(signupData.codemeli) || signupData.codemeli.length!=10 || signupData.mobile.length!=11 || !valDig(signupData.mobile)"

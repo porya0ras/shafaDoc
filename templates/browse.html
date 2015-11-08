@@ -1,9 +1,9 @@
-<ion-view view-title="شفاداک " type="bar-stable" hide-nav-bar="false" ng-controller="Search" ng-init="init()">
+<ion-view view-title="شفاداک " type="bar-stable" hide-nav-bar="false" ng-controller="Search" ng-init="init()" cache-view="false">
 
 
     <label class="bar bar-sub-header item item-input item-select select-city">
         <div class="input-label">
-            نام شهر :
+            نام شهر:
         </div>
         <select ng-model="city">
             <option ng-repeat="row in cities" value="{{row.city}}" selected>{{row.city}}</option>
@@ -16,10 +16,12 @@
         </label>
         <button class="button button-energized icon ion-search col col-20"
                 ng-click="getResult(selected)">
+                ng-focus="myStyle0={border: '1px solid #444'}"
+                ng-style="myStyle0"
         </button-->
-        <label class="item-input-wrapper search">
+        <label class="item-input-wrapper search" >
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3"
+            <input   type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:3"
                    placeholder=" بر اساس  تخصص یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
         </label>
         <button class="button button-clear button-positive" type="submit">
