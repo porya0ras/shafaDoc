@@ -534,6 +534,11 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         }).then(function (modal) {
             $scope.modal = modal;
         });
+        $ionicModal.fromTemplateUrl('templates/resetpassword.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal1 = modal;
+        });
         $scope.valDig=function ($obj) {
             if($obj==undefined) {
             return false;
@@ -661,6 +666,64 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             {
                 $scope.Error=true;
             }
+        };
+        $scope.repass={};
+        $scope.closerepass=function()
+        {
+            $scope.modal1.hide();
+        };
+        $scope.openrepass=function()
+        {
+            $scope.modal1.show();
+        };
+        $scope.resetpassword=function()
+        {
+            var O = new Object();
+            O.idU = $scope.repass.idU;
+            O.password = $scope.repass.password;
+            O.token=$scope.repass.token;
+            //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
+            var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=resetpassword';
+            $http({
+                method: 'POST',
+                url: apiAdd+'/api/Login',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        $scope.result = response.data.Data;
+                        if( $scope.result==true)
+                        {
+                            $ionicPopup.alert({
+                                title: 'اطلاع',
+                                content: 'رمز جدید برای شما ثبت شد!'
+                            }).then(function (res) {
+                                console.log('signup Done');
+                                $scope.closerepass();
+
+                            });
+                        }
+                        else{
+                            $ionicPopup.alert({
+                                title: 'هشدار',
+                                content: 'اشکال در وارد کردن اطلاعات.! ثبت نام صورت نگرفت '
+                            }).then(function (res) {
+                                console.log('signup اخطار');
+                            });
+                        }
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // اخطار
+                    $ionicPopup.alert({
+                        title: 'اخطار',
+                        content: ' ارتباط با سرور برقرار نیست'
+                    }).then(function (res) {
+                        console.log('اخطار Connection!');
+                    });
+                });
         };
         $scope.signup = false;
         $scope.signupData={};

@@ -88,6 +88,9 @@ margin-bottom: 15px;
 
 
 }
+#search form.item-input-inset{
+    overflow: visible;
+}
 .bar.bar-stable
 {
   background-color: #1AB4F7 !important;
@@ -211,8 +214,9 @@ color: #1D1313;
 
 }
 .dropdown-menu {
-    top :60px !important;
+    top: 46px !important;
     position: absolute !important;
+    margin-right: 59px !important;
 }
 #textleft
 {
@@ -226,6 +230,7 @@ color: #1D1313;
 }
 .may-avatar{
     max-height: 60px !important;
+    border-radius: 2px !important;
 
 }
 .hp-doc-span ,.font-size-10
@@ -285,17 +290,21 @@ color: #1D1313;
 #about-page{
     background-image: url("../img/about-bg.jpg");
     background-size: cover;
+    min-height: 450px;
 }
 .about-body{
     width: 80%;
-    height: 80%;
-    padding: 10%;
+    /*height: 80%;*/
+    padding: 10% 10% 0 10%;
     margin: 10%;
     border-radius: 5px;
     background-color: rgba(255,255,255,0.8);
     border-bottom: 2px solid #a7a7a7;
     border-right: 1px solid gray;
+    clear: both;
+    color: #4d4d4d;
 }
+
 .about-body .logo{
     background: url("../img/path79.png");
     background-size: 100%;
@@ -317,3 +326,4 @@ color: #1D1313;
 
 
 }
+

@@ -4,13 +4,13 @@
         <div class="list" ng-controller="Docs" ng-init="initDoctors()">
             <a class="item item-avatar" ng-repeat="row in doctors" href="#/app/doctorprof/{{row.docid}}">
                 <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ row.pic.replace('~','')}}">
-                <h2>{{row.fl}}</h2>
+                <h2>{{row.fname}} {{row.lname}}</h2>
                 <p>{{row.specialty}}</p>
                 <br>
             </a>
             <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.docid}}/{{row.dhid}}">
                 <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ row.pic.replace('~','')}}">
-                <h2>{{row.fl}}</h2>
+                <h2>{{row.named}} {{row.lnamed}}</h2>
                 <p>{{row.spe}}</p>
                 <br>
             </a>

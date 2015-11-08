@@ -3,12 +3,12 @@
         <div class="list card"  >
             <div class="item item-avatar">
                 <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ hdocprofile.pic.replace('~/','')}}">
-                <h2>{{hdocprofile.fl}}</h2>
+                <h2>{{hdocprofile.named}} {{hdocprofile.lnamed}}</h2>
                 <p>{{hdocprofile.spe}}</p>
-                <span class="font-size-10">{{hdocprofile.Statement}}</span>
-                <br>
-                <span class="font-size-12 item-text-wrap">فارغ التخصیل از : <br>{{hdocprofile.el}}</span>
-                <p>مسلط به زبان های : {{hdocprofile.Languages_Spoken}}</p>
+                <span class="font-size-10">{{hdocprofile.Statement}}</span><br>
+                <span class="font-size-10" ng-hide="hdocprofile.hspe=='' || hdocprofile.hspe==null">{{hdocprofile.hspe}}<br></span>
+                <span class="font-size-12 item-text-wrap">فارغ التخصیل از: <br>{{hdocprofile.el}}</span>
+                <p>مسلط به زبان های: {{hdocprofile.Languages_Spoken}}</p>
             </div>
         </div>
         <div>
