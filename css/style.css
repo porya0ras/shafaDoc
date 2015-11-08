@@ -310,7 +310,7 @@ color: #1D1313;
 .bar.bar-stable .title {
     color: #2C2C2C !important;
 }
-.input-label{
+.signup-form .input-label{
     font-weight: initial;
     padding-left: 10px;
     text-align: left;
