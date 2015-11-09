@@ -138,8 +138,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.doctors = response.data.Data;
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -167,8 +168,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         if(response.data.Data!=null) {
                             $scope.hdoctors = response.data.Data.$values;
                         }
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -195,8 +197,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         if(response.data.Data!=null) {
                             $scope.doctors = response.data.Data.$values;
                         }
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -256,8 +259,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hdocprofile = response.data.Data;
                         $scope.getHospitalDocDateTime($stateParams.hid,$stateParams.hdocid);
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -287,8 +291,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.docdatetime = response.data.Data;
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -470,8 +475,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 if (response.data.HRM.StatusCode == 200) {
 
                     $scope.ostans = response.data.Data;
-                    $ionicLoading.hide();
+
                 }
+                $ionicLoading.hide();
                 // success
             },
             function (response) { // optional
@@ -637,8 +643,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         catch (err){
 
                         }
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -678,10 +685,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         };
         $scope.resetpassword=function()
         {
+            $ionicLoading.show();
             var O = new Object();
             O.idU = $scope.repass.idU;
-            O.password = $scope.repass.password;
-            O.token=$scope.repass.token;
             //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=resetpassword';
             $http({
@@ -697,7 +703,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         {
                             $ionicPopup.alert({
                                 title: 'اطلاع',
-                                content: 'رمز جدید برای شما ثبت شد!'
+                                content: 'رمز جدید برای شما ارسال گردید'
                             }).then(function (res) {
                                 console.log('signup Done');
                                 $scope.closerepass();
@@ -707,11 +713,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         else{
                             $ionicPopup.alert({
                                 title: 'هشدار',
-                                content: 'اشکال در وارد کردن اطلاعات.! ثبت نام صورت نگرفت '
+                                content: 'اشکال در وارد کردن اطلاعات.تغییر رمز انجام نشد !'
                             }).then(function (res) {
                                 console.log('signup اخطار');
                             });
                         }
+                        $ionicLoading.hide();
                     }
                     // success
                 },
@@ -750,8 +757,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         //$scope.value = response.data.Data;
                         console.log(response.data.Data);
                         $scope.signupData.show=false;
-                        $ionicLoading.hide();
+
                     }
+                    $ionicLoading.hide();
                     // success
                 },
                 function (response) { // optional
@@ -772,6 +780,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             O.codemelli = $scope.signupData.codemeli;
             O.token=$scope.signupData.token;
             O.mobile=$scope.signupData.mobile;
+            O.fname=$scope.signupData.fname;
             //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=signup';
             $http({
@@ -1181,7 +1190,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 $scope.pos.lng= pos.coords.longitude;
                 $ionicLoading.hide();
             }, function (error) {
-                alert('Unable to get location: ' + error.message);
+                $ionicPopup.alert({
+                    title: 'اخطار',
+                    content: 'Unable to get location: ' + error.message
+                }).then(function (res) {
+                    console.log('اخطار Connection!');
+                });
             });
 
             $scope.map.setCenter(new google.maps.LatLng($latitude, $longitude));

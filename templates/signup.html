@@ -8,8 +8,10 @@
             <button class="button button-clear" ng-click="closereg()">بستن</button>
         </div>
     </ion-header-bar>
-    <ion-content class="signup-form">
-        <form ng-submit="mobileValidation()" ng-init="signupData.show=true">
+    <ion-content >
+        <form class="signup-form" ng-submit="mobileValidation()" ng-init="signupData.show=true">
+                    <span class="button button-full button-assertive rtl">به دلیل احراز هویت در زمان پذیرش، پر کردن صحیح موارد زیر الزامی است.</span>
+
             <div class="list rtl" ng-show="signupData.show">
                 <label class="item item-input">
                     <span class="input-label">نام کاربری</span>
@@ -28,6 +30,10 @@
                     <input type="text" ng-model="signupData.fl" required>
                 </label>
                 <label class="item item-input">
+                    <span class="input-label">نام پدر</span>
+                    <input type="text" ng-model="signupData.fname" required>
+                </label>
+                <label class="item item-input">
                     <span class="input-label">کد ملی</span>
                     <input type="text" ng-class="{'has-error': signupData.codemeli.length!=0 && signupData.codemeli.length!=10 || signupData.codemeli.length!=0 && !valDig(signupData.codemeli) }" ng-model="signupData.codemeli" required>
                 </label>
@@ -35,14 +41,14 @@
                     <span class="input-label">شماره همراه</span>
                     <input type="text" ng-class="{'has-error': signupData.mobile.length!=0 && signupData.mobile.length !=11 || signupData.mobile.length!=0 && !valDig(signupData.mobile) }" ng-model="signupData.mobile" required>
                 </label>
-                    <button ng-disabled="signupData.fl.length==0 || signupData.username.length==0 || signupData.username.$dirty && signupData.username.$invalid || signupData.password!=signupData.repassword || signupData.password.length==0 || signupData.fl.$dirty && signupData.fl.$invalid || !valDig(signupData.codemeli) || signupData.codemeli.length!=10 || signupData.mobile.length!=11 || !valDig(signupData.mobile)"
+                    <button ng-disabled="signupData.fname.length==0 || signupData.fl.length==0 || signupData.username.length==0 || signupData.username.$dirty && signupData.username.$invalid || signupData.password!=signupData.repassword || signupData.password.length==0 || signupData.fl.$dirty && signupData.fl.$invalid || !valDig(signupData.codemeli) || signupData.codemeli.length!=10 || signupData.mobile.length!=11 || !valDig(signupData.mobile)"
                             class="button button-block button-positive" type="submit">ثبت نام !</button>
 
             </div>
         </form>
         <form ng-submit="Signup()">
             <div class="list rtl" ng-hide="signupData.show">
-                <h4>لطفا منتظر دریافت کد تایید باشید </h4>
+                <h5 class="rtl-item-input">لطفا منتظر دریافت کد تایید باشید </h5>
                 <label class="item rtl-item-input item-input item-stacked-label">
                     <span class="input-label">کد تایید شماره موبایل</span>
                     <input type="text" ng-model="signupData.token" placeholder="PF8AR">
