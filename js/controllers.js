@@ -6,7 +6,7 @@ var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope,$ionicPopup) {
 
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
@@ -14,6 +14,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         // listen for the $ionicView.enter event:
         //$scope.$on('$ionicView.enter', function(e) {
         //});
+        $ionicPopup.alert({
+            title: '!هشدار',
+            content: 'لطفا از فعال بودن GPS  و ارتباط با اینترنت اطمینان حاصل فرمایید.'
+        }).then(function (res) {
+
+        });
         $rootScope.httpsite="http://shafadoc.tbzmed.ac.ir";
         // Form data for the login modal
         $scope.loginData = {};
@@ -776,11 +782,12 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var O = new Object();
             O.username = $scope.signupData.username;
             O.password = $scope.signupData.password;
-            O.fl = $scope.signupData.fl;
+            O.fname = $scope.signupData.fname;
+            O.lname = $scope.signupData.lname;
             O.codemelli = $scope.signupData.codemeli;
             O.token=$scope.signupData.token;
             O.mobile=$scope.signupData.mobile;
-            O.fname=$scope.signupData.fname;
+            O.father=$scope.signupData.father;
             //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=signup';
             $http({
