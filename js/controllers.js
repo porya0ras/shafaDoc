@@ -1,13 +1,11 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
-//var apiAdd="http://drugs.fractalteam.ir";
-var apiAdd="";
+var apiAdd="http://drugs.fractalteam.ir";
+//var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
-
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope,$ionicPopup) {
-
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
@@ -104,7 +102,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -153,7 +151,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -183,7 +181,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -212,7 +210,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -241,7 +239,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -274,7 +272,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -306,7 +304,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -332,7 +330,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -376,7 +374,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -456,7 +454,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -490,7 +488,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 // اخطار
                 $ionicPopup.alert({
                     title: 'اخطار',
-                    content: ' ارتباط با سرور برقرار نیست'
+                    content: ' ارتباط با سرور برقرار نیست.'
                 }).then(function (res) {
                     console.log('اخطار Connection!');
                 });
@@ -517,7 +515,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -622,7 +620,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -658,7 +656,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -709,7 +707,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         {
                             $ionicPopup.alert({
                                 title: 'اطلاع',
-                                content: 'رمز جدید برای شما ارسال گردید'
+                                content: 'رمز جدید برای شما ارسال گردید.'
                             }).then(function (res) {
                                 console.log('signup Done');
                                 $scope.closerepass();
@@ -732,7 +730,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -772,7 +770,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: '! ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -825,7 +823,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -852,7 +850,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: '! ارتباط با سرور برقرار نیست'
+                        content: '! ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -920,7 +918,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -960,7 +958,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1030,7 +1028,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1059,7 +1057,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1088,7 +1086,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPupup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1113,7 +1111,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPupup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1152,7 +1150,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     // اخطار
                     $ionicPopup.alert({
                         title: 'اخطار',
-                        content: ' ارتباط با سرور برقرار نیست'
+                        content: ' ارتباط با سرور برقرار نیست.'
                     }).then(function (res) {
                         console.log('اخطار Connection!');
                     });
@@ -1291,7 +1289,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
                         $ionicPopup.alert({
                             title: 'اخطار',
-                            content: ' ارتباط با سرور برقرار نیست'
+                            content: ' ارتباط با سرور برقرار نیست.'
                         }).then(function (res) {
                             console.log('اخطار Connection!');
                         });

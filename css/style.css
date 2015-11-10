@@ -333,7 +333,8 @@ label .ng-invalid
     font-weight: initial;
     padding-left: 10px;
     text-align: left;
-
-
 }
-
+.dropdown-menu > li > a{
+    font-size: 18px;
+    height: 10%;
+}
