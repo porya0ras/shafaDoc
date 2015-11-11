@@ -356,3 +356,6 @@ color: #1D1313;
     font-size: 18px;
     height: 10%;
 }
+.primary-buttons button{
+    width: 40px;
+}

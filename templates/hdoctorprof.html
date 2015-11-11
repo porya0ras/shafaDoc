@@ -1,4 +1,9 @@
-<ion-view view-title="پروفایل پزشک">
+
+<ion-view view-title="پروفایل پزشک"  can-swipe-back="true">
+    <ion-nav-buttons side="primary">
+        <button ng-controller="Util" ng-show="backState.stateName!='app.hprof'" style="" ng-click="$ionicGoBack()" class="button back-button buttons button-clear button-clear header-item"><i class="icon ion-ios-arrow-back"></i>
+            <span style="transform: translate3d(0px, 0px, 0px);" class="back-text"></span></button>
+    </ion-nav-buttons>
     <ion-content class="padding" ng-controller="Docs" ng-init="getHospitalDocProFile(stateParams.hdocid)" >
         <div class="list card"  >
             <div class="item item-avatar">

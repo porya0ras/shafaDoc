@@ -1,8 +1,8 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
-var apiAdd="http://drugs.fractalteam.ir";
-//var apiAdd="";
+//var apiAdd="http://drugs.fractalteam.ir";
+var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope,$ionicPopup) {
@@ -51,13 +51,14 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             }, 1000);
         };
     })
-    .controller('Docs', function ($scope, $http, $ionicPopup, $state, $cordovaGeolocation, $ionicLoading, $stateParams,$rootScope) {
+    .controller('Docs', function ($scope, $http, $ionicPopup, $state, $cordovaGeolocation,$ionicNavBarDelegate,$ionicHistory,$ionicLoading, $stateParams,$rootScope) {
         $scope.stateParams=$stateParams;
+
+
         //$scope.mapCreated = function (map, $l0, $l1) {
         //    $scope.map = map;
         //    $scope.centerOnLocation($l0, $l1);
         //};
-
         $scope.hdreservation=function()
         {
             $ionicLoading.show();
@@ -365,7 +366,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         if(response.data.Data!=null) {
                             $scope.hdocdatetime = response.data.Data.$values;
-                            $scope.dateid=hdocdatetime[0].dateid;
+                            //$scope.dateid=hdocdatetime[0].dateid;
                             //console.log($scope.hdocdatetime);
                         }
                     }
@@ -1164,8 +1165,9 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
         //---------------------------------------------------------------------
     })
-    .controller('Util', function ($scope, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading,$ionicModal) {
-
+    .controller('Util', function ($scope,$ionicHistory, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading,$ionicModal) {
+        $scope.backState=$ionicHistory.backView();
+        console.log( $scope.backState);
         $ionicModal.fromTemplateUrl('templates/changepassword.html', {
             scope: $scope
         }).then(function (modal) {
@@ -1402,11 +1404,8 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 }).then(function (response) {
 
                         if (response.data.HRM.StatusCode == 200) {
-
                             console.log(response.data.Data);
                             return response.data.Data;
-
-
                         }
                         // success
                     },
