@@ -2,21 +2,23 @@
     <ion-content class="padding" ng-controller="Docs" ng-init="getHospitalDocProFile(stateParams.hdocid)" >
         <div class="list card"  >
             <div class="item item-avatar">
-                <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ hdocprofile.pic.replace('~/','')}}">
+                <img class="may-avatar2" ng-src="{{$root.httpsite +'/'+ hdocprofile.pic.replace('~/','')}}">
                 <h2>{{hdocprofile.named}} {{hdocprofile.lnamed}}</h2>
                 <p>{{hdocprofile.spe}}</p>
                 <span class="font-size-10">{{hdocprofile.Statement}}</span><br>
                 <span class="font-size-10" ng-hide="hdocprofile.hspe=='' || hdocprofile.hspe==null">{{hdocprofile.hspe}}<br></span>
                 <span class="font-size-12 item-text-wrap">فارغ التخصیل از: <br>{{hdocprofile.el}}</span>
-                <p>مسلط به زبان های: {{hdocprofile.Languages_Spoken}}</p>
+                <p class="font-size-12" >مسلط به زبان های: {{hdocprofile.Languages_Spoken}}</p>
             </div>
         </div>
         <div>
         <div class="input-label col">
         انتخاب زمان ملاقات
         </div>
-        <select class="form-control" ng-model="dateid">
-            <optgroup ng-repeat="row in hdocdatetime" label=" ظرفیت باقیمانده : {{row.pnum-row.count}}">
+        <select class="form-control" ng-model="dateid" >
+            <option style="display:none" value="">لطفا زمان مورد نظر خود را انتخاب کنید</option>
+            <optgroup  ng-repeat="row in hdocdatetime" label=" ظرفیت باقیمانده : {{row.pnum-row.count}}">
+
             <option value="{{row.dateid}}">{{row.dayn}} | {{row.year}}/{{row.month}}/{{row.day}} | {{row.time}}</option>
                 <hr>
             </optgroup>

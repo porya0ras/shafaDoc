@@ -57,6 +57,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         //    $scope.map = map;
         //    $scope.centerOnLocation($l0, $l1);
         //};
+
         $scope.hdreservation=function()
         {
             $ionicLoading.show();
@@ -263,7 +264,6 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         $scope.hdocprofile = response.data.Data;
                         $scope.getHospitalDocDateTime($stateParams.hid,$stateParams.hdocid);
-
                     }
                     $ionicLoading.hide();
                     // success
@@ -365,7 +365,8 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                     if (response.data.HRM.StatusCode == 200) {
                         if(response.data.Data!=null) {
                             $scope.hdocdatetime = response.data.Data.$values;
-                            console.log($scope.hdocdatetime);
+                            $scope.dateid=hdocdatetime[0].dateid;
+                            //console.log($scope.hdocdatetime);
                         }
                     }
                     // success
@@ -549,6 +550,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
         }).then(function (modal) {
             $scope.modal1 = modal;
         });
+
         $scope.valDig=function ($obj) {
             if($obj==undefined) {
             return false;
@@ -678,6 +680,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                 $scope.Error=true;
             }
         };
+
         $scope.repass={};
         $scope.closerepass=function()
         {
@@ -892,7 +895,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
             var sendSearch=new Object();
             sendSearch.search=$search;
             sendSearch.city=$scope.city;
-            console.log(sendSearch);
+            //console.log(sendSearch);
             var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(sendSearch) + '&Func=search';
             $http({
                 method: 'POST',
@@ -1161,7 +1164,73 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
 
         //---------------------------------------------------------------------
     })
-    .controller('Util', function ($scope, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading) {
+    .controller('Util', function ($scope, $http, $ionicPopup,$localstorage,$state,$rootScope,$ionicLoading,$ionicModal) {
+
+        $ionicModal.fromTemplateUrl('templates/changepassword.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.modal2 = modal;
+        });
+        $scope.chpass={};
+        $scope.openchpass=function()
+        {
+            $scope.modal2.show();
+        };
+        $scope.closechpass=function()
+        {
+            $scope.modal2.hide();
+        };
+        $scope.changepassword=function()
+        {
+            $ionicLoading.show();
+            var O = new Object();
+            O.oldpass = $scope.chpass.oldpass;
+            O.newpass = $scope.chpass.newpass;
+            O.idU = $scope.$root.UserData.idU;
+            //var xsrf = 'Pass=' + Pass + '&Data={"username":"'+$usrname+'","password":"'+$password+'"}';
+            var xsrf = 'Pass=' + Pass + '&Data=' + JSON.stringify(O) + '&Func=changepassword';
+            $http({
+                method: 'POST',
+                url: apiAdd+'/api/Login',
+                data: xsrf,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (response) {
+
+                    if (response.data.HRM.StatusCode == 200) {
+                        $scope.result = response.data.Data;
+                        if( $scope.result==true)
+                        {
+                            $ionicPopup.alert({
+                                title: 'اطلاع',
+                                content: 'رمز جدید برای شما ثبت گردید.'
+                            }).then(function (res) {
+                                console.log('signup Done');
+                                $scope.closechpass();
+
+                            });
+                        }
+                        else{
+                            $ionicPopup.alert({
+                                title: 'هشدار',
+                                content: 'تغییر رمز انجام نشد ! رمز فعلی اشتباه است .'
+                            }).then(function (res) {
+                                console.log('signup اخطار');
+                            });
+                        }
+                        $ionicLoading.hide();
+                    }
+                    // success
+                },
+                function (response) { // optional
+                    // اخطار
+                    $ionicPopup.alert({
+                        title: 'اخطار',
+                        content: ' ارتباط با سرور برقرار نیست.'
+                    }).then(function (res) {
+                        console.log('اخطار Connection!');
+                    });
+                });
+        };
         $scope.value = {};
         $scope.reload=function()
         {

@@ -21,8 +21,9 @@
         </button-->
         <label class="item-input-wrapper search" ng-style="myStyle0" >
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input ng-focus="myStyle0={border: '1px solid rgb(192, 192, 192)'}" ng-blur="myStyle0={border: 'none'}"   type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:6"
-                   placeholder=" بر اساس  تخصص یا نوع بیماری یا دکتر" ng-model="selected" class="rtl">
+            <!--<input ng-focus="myStyle0={border: '1px solid rgb(192, 192, 192)'}" ng-blur="myStyle0={border: 'none'}"   type="text" typeahead="state for state in searchs | filter:$viewValue | limitTo:6"-->
+                   <!--placeholder="بر اساس تخصص، نوع بیماری، نام دکتر..." ng-model="selected" class="rtl">-->
+            <input ng-focus="myStyle0={border: '1px solid rgb(192, 192, 192)'}" ng-blur="myStyle0={border: 'none'}"   type="text" placeholder="بر اساس تخصص، نوع بیماری، نام دکتر..." ng-model="selected" class="rtl">
         </label>
         <button class="button button-clear button-positive" type="submit">
             جستجو
@@ -85,7 +86,7 @@
                 <img class="may-avatar" ng-src="{{$root.httpsite +'/'+ row.e.pic.replace('~/','')}}">
                 <h2>{{row.e.named}} {{row.e.lnamed}}</h2>
                 <p>{{row.e.spe}}</p>
-                <span>بیمارستان : {{row.fl}}</span>
+                <span>{{row.fl}}</span>
             </a>
             <div class="item item-divider" ng-if="speciality.length>0" >
                 تخصص ها

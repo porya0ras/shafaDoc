@@ -76,7 +76,8 @@
 
 
                     <p>{{hdoc.spe}}</p>
-                    <span class="item-text-wrap hp-doc-span">فارغ التحصیل از: {{hdoc.el}}</span>
+                    <span class="font-size-10"  ng-hide="hdoc.Statement=='' || hdoc.Statement==null">{{hdoc.Statement}}</span><br>
+                    <span class="font-size-10" ng-hide="hdoc.hspe=='' || hdoc.hspe==null">{{hdoc.hspe}}<br></span>
                 </a>
         <br>
         <br>
