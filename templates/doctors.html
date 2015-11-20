@@ -9,13 +9,13 @@
                 <span class="font-size-10">{{hdocprofile.Statement}}</span><br>
                 <br>
             </a>
-            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.docid}}/{{row.dhid}}">
-                <img class="may-avatar2" ng-src="{{$root.httpsite +'/'+ row.pic.replace('~','')}}">
-                <h2>{{row.named}} {{row.lnamed}}</h2>
-                <p>{{row.spe}}</p>
-                <span class="font-size-10"  ng-hide="row.Statement=='' || row.Statement==null">{{row.Statement}}</span><br>
-                <span class="font-size-10" ng-hide="row.hspe=='' || row.hspe==null">{{row.hspe}}<br></span>
-                <br>
+            <a class="item item-avatar" ng-repeat="row in hdoctors" href="#/app/hdoctorprof/{{row.e.docid}}/{{row.e.dhid}}">
+                <img class="may-avatar2" ng-src="{{$root.httpsite +'/'+ row.e.pic.replace('~','')}}">
+                <h2>{{row.e.named}} {{row.e.lnamed}}</h2>
+                <p>{{row.e.spe}}</p>
+                <p ng-hide="row.e.hspe=='' || row.e.hspe==null">{{row.e.hspe}}<br></p>
+                <span class="font-size-12" ng-hide="row.e.Statement=='' || row.e.Statement==null">{{row.e.Statement}}<br></span>
+                <p >{{row.fname}}</p>
             </a>
             <p ng-if="doctors.length==0 && hdoctors.length==0">
                 موردی موجود نیست !

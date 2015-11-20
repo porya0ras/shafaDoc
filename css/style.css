@@ -264,6 +264,9 @@ color: #1D1313;
 .popup-body{
     direction: rtl;
 }
+.popup-sub-title{
+    direction: rtl;
+}
 [class^="micon-"], [class*=" micon-"] {
     font-family: 'icomoon';
     speak: none;
@@ -359,3 +362,4 @@ color: #1D1313;
 .primary-buttons button{
     width: 40px;
 }
+

@@ -1,23 +1,47 @@
 var Pass = 123;
 var location0 = {};
 var httpsite = "http://shafadoc.tbzmed.ac.ir";
-//var apiAdd="http://drugs.fractalteam.ir";
-var apiAdd="";
+var apiAdd="http://drugs.fractalteam.ir";
+//var apiAdd="";
 var Data = {};// docprofile
 angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.bootstrap', 'starter.directives'])
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope,$ionicPopup) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout,$rootScope,$ionicPopup,$ionicLoading,$http) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
         // listen for the $ionicView.enter event:
         //$scope.$on('$ionicView.enter', function(e) {
         //});
-        $ionicPopup.alert({
-            title: '!هشدار',
-            content: 'لطفا از فعال بودن GPS  و ارتباط با اینترنت اطمینان حاصل فرمایید.'
-        }).then(function (res) {
+        $scope.load=function() {
+            var msg="";
+            $ionicLoading.show();
+            navigator.geolocation.getCurrentPosition(function (pos) {
+            }, function (error) {
+                msg="Gps خود را روشن نمایید ."
+            });
+            var Chek=false;
+            $http.get("http://drugs.fractalteam.ir/api/values")
+                .success(function(response) {
+                    Chek=true;
+                });
+            if(!Chek)
+            {
+                msg=msg+'\n ارتباط اینترنت خود را چک نمایید .'
+            }
+            $ionicLoading.hide();
+            $ionicPopup.alert({
+                title: '!هشدار',
+                subTitle:'لطفا به موارد زیر توجه فرمایید .',
+                content:msg
+            }).then(function (res) {
 
-        });
+            });
+
+        };
+        $scope.load();
+
+
+
         $rootScope.httpsite="http://shafadoc.tbzmed.ac.ir";
         // Form data for the login modal
         $scope.loginData = {};
@@ -80,9 +104,20 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         console.log(return0);
                         if(return0.ret==true)
                         {
-                            $ionicPopup.alert({
+                            $ionicPopup.show({
                                 title: 'اطلاع',
-                                content: 'این زمان برای شما رزرو گردید '+'\nشناسه ثبت : '+return0.happo.hid
+                                content: 'این زمان برای شما رزرو گردید '+'\nشناسه ثبت : '+return0.happo.hid,
+                                buttons: [
+                                    { text: 'ok', type: 'button-positive'
+                                    },
+                                    {
+                                        text: '<b>مشاهده لیست رزرو شده ها</b>',
+                                        type: 'button-balanced',
+                                        onTap: function(e) {
+                                            $state.go('app.resbox');
+                                        }
+                                    }
+                                ]
                             }).then(function (res) {
                                 console.log('reserve don');
                                 $scope.getHospitalDocDateTime($stateParams.hid,$stateParams.hdocid);
@@ -609,7 +644,7 @@ angular.module('starter.controllers', ['ionic', 'ionic.utils', 'ngAnimate', 'ui.
                         else{
                             $ionicPopup.alert({
                                 title: 'اخطار',
-                                content: 'نام کاربری و یا رمز عبور اشتباه می باشد '
+                                content: 'نام کاربری و یا رمز عبور اشتباه می باشد.'
                             }).then(function (res) {
                                 console.log('اخطار Login!');
                             });
